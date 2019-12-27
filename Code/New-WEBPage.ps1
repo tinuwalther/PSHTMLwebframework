@@ -9,11 +9,11 @@ function New-WEBPage{
         .DESCRIPTION
         Enter the description of this function
 
-        .PARAMETER Param1
-        Enter the description of the Param1
+        .PARAMETER newpage
+        Enter the name of the new page
 
         .EXAMPLE
-        Get-SomeSettings.ps1 -Param1 'run'
+        New-WEBPage -newpage Page1, Page2, Page3
 
         .NOTES
         Date, Author, Version, Notes
@@ -23,7 +23,7 @@ function New-WEBPage{
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $false)]
-        [String]$Param1
+        [String[]]$newpage
     )
     $function = $($MyInvocation.MyCommand.Name)
     Write-Verbose "Running $function"
@@ -38,16 +38,15 @@ function New-WEBPage{
 
         Write-Host "[NEW] [START] Launching new page process" -ForegroundColor Green	
 
-        $newpage = Read-Host 'Enter the name of the new page'
-
-        Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($newpage).ps1" -PassThru | Select-Object -ExpandProperty FullName
+        $newpage | ForEach-Object {
+            Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($_).ps1" -PassThru | Select-Object -ExpandProperty FullName
+        }
 
         Write-Host "[NEW] [END ] Process" -ForegroundColor Green	
 
         $ret = [PSCustomObject]@{
             Succeeded  = $true
             Function   = $function
-            Message    = "$($newpage)s successfully created"
         }
 
     }

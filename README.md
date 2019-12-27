@@ -1,91 +1,233 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [PowerShell Module Template](#powershell-module-template)
-  - [README](#readme)
-  - [CHANGELOG](#changelog)
-  - [CI](#ci)
-    - [Build-Module.ps1](#build-moduleps1)
-    - [Module-Settings.json](#module-settingsjson)
-  - [Code](#code)
-    - [Get-PRESomeSettings.ps1](#get-presomesettingsps1)
-  - [Module-Folder](#module-folder)
-    - [Manifest-File](#manifest-file)
-    - [Module-File](#module-file)
-  - [Tests](#tests)
-    - [Functions.Tests.ps1](#functionstestsps1)
-    - [Functions.Tests.json](#functionstestsjson)
+- [PSHTMLwebframework](#pshtmlwebframework)
+  - [Create the Webframework](#create-the-webframework)
+  - [Build the Home page](#build-the-home-page)
+  - [Create a new Webpage](#create-a-new-webpage)
+  - [Publish the website](#publish-the-website)
+  - [Change the header](#change-the-header)
+  - [Change the footer](#change-the-footer)
+  - [Modify the Template-Page](#modify-the-template-page)
+  - [Adding images](#adding-images)
+  - [Change website style](#change-website-style)
+- [PSHTMLwebframework Content](#pshtmlwebframework-content)
 
-# PowerShell Module Template
+# PSHTMLwebframework
 
-How to create a new PowerShell-Module with PSModuleTemplate?
+The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts.
 
-1. Create a new project in Git and clone it to your computer
-2. git clone <https://github.com/tinuwalther/PSModuleTemplate.git>  
-3. Copy the content from PSModuleTemplate into your new project
-4. Update the README.md and CHANGELOG.md with your information
-5. Save your function-files in the folder Code
-6. Build your Module with Build-Module.ps1
+## Create the Webframework
 
-## README
+To create the Webframework with PSHTMLwebframework, run the following commands:
 
-Information about your project.
+1. Start VSCode or PowerShell ISE
+2. Run the Script Build-Module.ps1
 
-## CHANGELOG
+## Build the Home page
 
-Update this file whenever you make changes on your module!
+To build the Home page (index.html), run the following commands:
 
-## CI
+1. Import-Module .\PSHTMLwebframwork.psd1
+2. Run Build-WEBHtmlPages
 
-This is the folder for all Continous Integration scripts like a script to automate the Module-File (Build-Module.ps1) and other scripts.
+## Create a new Webpage
 
-### Build-Module.ps1
+To create a new Webpage from the Template, run the following commands:
 
-This script builds your module automatically.  
+1. Run New-WEBPage -newpage Page1
+2. Modify the new Page1.ps1
+3. Run Build-WEBHtmlPages
+4. Add the new Page1 to the header-menu
 
-Build-Module.ps1 running the Functions.Tests.ps1, if no errors occured it delete the existent Module-File (PSM1) and create a new Module-File (PSM1) with all of your functions.
-The script also updates the Manifest-File (PSD1) with the functions to export. If the Manifest-File doesn't exists, it will be created.
+After each changes on one or more Script-Page, you must run Build-WEBHtmlPages to publish the changes to the HTML-File.
 
-Finally Build-Module.ps1 tests if your Module can be imported and removed without any errors. It tests also if the Module contains all of your exported functions.
+## Publish the website
 
-### Module-Settings.json
+To publish the website on your personal web space:
 
-The settings-file will be created, if you build the module at the first time and contains the following properties:
+1. Remove the Folder Bin from the PSHTMLwebframwork
+2. Upload the content of PSHTMLwebframwork to your web space
 
-    ModuleName
-    ModuleVersion
-    ModuleDescription
-    ModuleAuthor
-    ModuleCompany
+## Change the header
 
-## Code
+To change the header, edit the Script header.ps1 in Bin/Includes:
 
-In this folder save all your functions as PS1-Files with the Name of the function you want to have in the Module. e.g. Get-PRESomeSettings.ps1.
+````powershell
+header {
 
-### Get-PRESomeSettings.ps1
+    ul -Content {
 
-This is an example function-file, you can copy and rename this file for your own use. Before you build your module, please be sure that you renamed the function name within the file.
+        #HomePage
+        li -Content {
+            a -href "index.html" -Content {
+                "Home"
+            }
+        }
 
-## Module-Folder
+        #NewPages
 
-The Module-Folder will be created automatically with the Build-Module.script.
 
-### Manifest-File
+        #FixedLinks
+        li -Content {
+            a -href "https://pshtml.readthedocs.io/" -Content {
+                "PSHTML documentation"
+            } -Target _blank
+        }
+        li -Content {
+            a -href "https://getbootstrap.com/" -Content {
+                "Bootstrap Help"
+            } -Target _blank
+        }
+        li -Content {
+            a -href "https://www.w3schools.com/" -Content {
+                "HTML Help"
+            } -Target _blank
+        }
 
-Automatically generated Manifest-file (PSD1), please update some settings by editing the file in vs-code.
+    }
 
-### Module-File
+}
+````
 
-PowerShell-Module-file (PSM1), contains all your functions from the Code-folder.
+## Change the footer
 
-## Tests
+To change the footer, edit the Script footer.ps1 in Bin/Includes:
 
-This folder contains all the Pester-Test-scripts.  
+````powershell
+Footer {
 
-### Functions.Tests.ps1
+    div -id "footer" -class "container-fluid" -Content {
 
-Functions.Tests.ps1 tests all of your scripts/functions in the folder Code.  
+        hr
 
-### Functions.Tests.json
+        $PSHTMLlink = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  
+        p {
+            "Generated with $($PSHTMLlink)"
+        }
 
-This file will be created, if there were some errors in the Build-Module.
+    }
+
+}
+````
+
+## Modify the Template-Page
+
+To modify the Template-Page, edit the Script page.ps1 in Bin/Templates.
+
+## Adding images
+
+Save your images to the folder Assets/IMG and add a new region to your Script-Page:
+
+````powershell
+div -id "img1" -class 'container-fluid' -Content {
+
+    img -src "Assets/IMG/words.png" -class "img-thumbnail"
+
+}
+````
+
+## Change website style
+
+To change website styles, edit the style.scc in Style:
+
+````css
+body { background: #4CA3DD !important;}
+
+p {
+    font-family: "QuickSand", sans-serif;
+  }
+
+  h1 {
+    font-family: "QuickSand", sans-serif;
+}
+h2 {
+    font-family: "QuickSand", sans-serif;
+}
+
+h3 {
+    font-family: "QuickSand", sans-serif;
+}
+
+table {
+    font-family: "QuickSand", sans-serif;
+}
+
+Div {
+    margin: 60px;
+    background: #fdfdfc;
+}
+
+img {
+    max-width:100% ;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
+  .active {
+    background-color: #4CAF50;
+  }
+````
+
+# PSHTMLwebframework Content
+
+The PSHTMLwebframework contains the following files and folders:
+
+````Text
++---PSHTMLwebframwork
+|   |   index.html
+|   |
+|   +---Assets
+|   |   +---BootStrap
+|   |   |       bootstrap.min.css
+|   |   |       bootstrap.min.js
+|   |   |
+|   |   +---Chartjs
+|   |   |       Chart.bundle.min.js
+|   |   |       LICENSE.md
+|   |   |
+|   |   +---IMG
+|   |   |       words.png
+|   |   |
+|   |   \---Jquery
+|   |           jquery-3.3.1.slim.min.js
+|   |
+|   +---Bin
+|   |   |   index.ps1
+|   |   |   Load-Environment.ps1
+|   |   |   PSHTMLwebframwork.psd1
+|   |   |   PSHTMLwebframwork.psm1
+|   |   |
+|   |   +---Includes
+|   |   |       footer.ps1
+|   |   |       header.ps1
+|   |   |
+|   |   \---Templates
+|   |           page.ps1
+|   |
+|   \---Style
+|           style.css  
+````

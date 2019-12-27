@@ -1,4 +1,4 @@
-$page = $MyInvocation.MyCommand.Name -replace '.ps1'
+$page = 'home'
 
 $HTML = html {
 
@@ -11,7 +11,7 @@ $HTML = html {
         Script -src "Assets/BootStrap/bootstrap.min.js"
         link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
         
-        Title "PSHTMLwebexample"
+        Title "$($page.ToUpper()) | PSHTMLwebexample"
     }
 
     body {
@@ -26,24 +26,24 @@ $HTML = html {
                 p {
                     h2 $page.ToUpper()
                 }
-    
             }
             #endregion
 
             #region Section 2
-            div -id "2"-class 'container-fluid' -Content {
+            div -id "2" -class 'container-fluid' -Content {
 
                 h3 "Automated $($page.ToUpper()) Page"
 
-                p {
-                    "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-                }
+            }
+            div -id "img1" -class 'container-fluid' -Content {
+
+                img -src "Assets/IMG/words.png" -class "img-thumbnail" 
 
             }
             #endregion
 
             #region Section 3
-            div -id "3"-class 'container-fluid' -Content {
+            div -id "3" -class 'container-fluid' -Content {
 
                 h4 "Lorem ipsum dolor sit amet"
                 p {

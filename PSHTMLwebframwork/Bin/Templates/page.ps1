@@ -11,7 +11,7 @@ $HTML = html {
         Script -src "Assets/BootStrap/bootstrap.min.js"
         link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
         
-        Title "PSHTMLwebexample"
+        Title "$($page.ToUpper()) | PSHTMLwebexample"
     }
 
     body {
@@ -31,7 +31,7 @@ $HTML = html {
             #endregion
 
             #region Section 2
-            div -id "2"-class 'container-fluid' -Content {
+            div -id "2" -class 'container-fluid' -Content {
 
                 h3 "Automated $($page.ToUpper()) Page"
 
