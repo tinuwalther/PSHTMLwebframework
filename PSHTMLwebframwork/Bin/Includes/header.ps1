@@ -1,19 +1,23 @@
 header {
 
-    #region Menu
     ul -Content {
 
+        #HomePage
         li -Content {
             a -href "index.html" -Content {
                 "Home"
             }
         }
-        li -Content {
-            a -href "about.html" -Content {
-                "About"
-            }
-        }
 
+        #NewPages
+
+
+        #FixedLinks
+        li -Content {
+            a -href "https://pshtml.readthedocs.io/" -Content {
+                "PSHTML documentation"
+            } -Target _blank
+        }
         li -Content {
             a -href "https://getbootstrap.com/" -Content {
                 "Bootstrap Help"
@@ -24,13 +28,7 @@ header {
                 "HTML Help"
             } -Target _blank
         }
-        li -Content {
-            a -href "https://tinuwalther.github.io/" -Content {
-                "Tinus EngOps Wiki"
-            } -Target _blank
-        }
 
     }
-    #endregion
 
 }

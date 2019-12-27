@@ -42,8 +42,8 @@ $HTML = html {
             }
             #endregion
                 
-            #Import-Module pshtml -Force
             Include -Name footer
+
         } 
 
     }
