@@ -10,7 +10,11 @@ header {
         }
 
         #NewPages
-
+        li -Content {
+            a -href "about.html" -Content {
+                "About"
+            }
+        }
 
         #FixedLinks
         li -Content {
