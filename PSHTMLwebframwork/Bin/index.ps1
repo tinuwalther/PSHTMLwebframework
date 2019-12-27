@@ -48,7 +48,7 @@ $HTML = html {
                 h4 "Lorem ipsum dolor sit amet"
 
                 p {
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/webtest/blob/develop/README.md" -Target _blank
+                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
                     "Generated with $($link)"
                 }
 
