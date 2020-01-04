@@ -1,4 +1,6 @@
-$page = $MyInvocation.MyCommand.Name -replace '.ps1'
+$page  = $MyInvocation.MyCommand.Name -replace '.ps1'
+$Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
+$Title = "PSHTMLwebexample"
 
 $HTML = html {
 
@@ -11,41 +13,97 @@ $HTML = html {
         Script -src "Assets/BootStrap/bootstrap.min.js"
         link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
         
-        Title "$($page.ToUpper()) | PSHTMLwebexample"
+        Title "$($page.ToUpper()) | $($Title)"
     }
 
     body {
 
-        div -Class "container" -Content {
+        div -Class "container pt-4" -Content {
 
-            Include -Name header
+            header {
 
-            #region Section 1
-            div -id "1" -class 'jumbotron container-fluid' -content {
+                ul -Content {
+
+                    Include -Name header
+
+                    #FixedLinks
+                    li -Content {
+                        a -href "https://pshtml.readthedocs.io/" -Content {
+                            "PSHTML"
+                        } -Target _blank
+                    }
+                    li -Content {
+                        a -href "https://getbootstrap.com/" -Content {
+                            "Bootstrap"
+                        } -Target _blank
+                    }
+                    li -Content {
+                        a -href "https://www.w3schools.com/" -Content {
+                            "w3schools"
+                        } -Target _blank
+                    }
+
+                }
+
+            }
+
+            #region jumbotron
+            div -id "j1" -class 'jumbotron text-center' -content {
+        
+                p {
+                    h1 "$($Title)"
+                }
+
+                hr
+
+                p {
+                    "Automatically created website "
+                    b { $($Label) }
+                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    " | Generated with $($link)"
+                }
+            } 
+            #endregion
+
+            #region Section
+            div -id "1" -class 'container-fluid' -Content {
+
+                h1 "$($Label) PSHTMLwebframework"
+
+                p { "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts." }
+
+                h2 "Create the Webframework"
+
+                p { "To create the Webframework with PSHTMLwebframework, run the following commands:" }
+                p { "1. git clone https://github.com/tinuwalther/PSHTMLwebframwork.git" } -class "text-monospace"
+                p { "2. git checkout develop" } -class "text-monospace"
+                p { "3. git pull" } -class "text-monospace"
+
+                h2 "Build the Home page"
+
+                p { "To build the Home page (index.html), run the following commands:" }
+                p { "1. Import-Module .\PSHTMLwebframwork.psd1" } -class "text-monospace"
+                p { "2. Run Build-WEBHtmlPages" } -class "text-monospace"
+
+                h2 "Create a new Webpage"
+
+                p { "To create a new Webpage from the Template, run the following commands:" }
+                p { "1. Run New-WEBPage -newpage Page1" } -class "text-monospace"
+                p { "2. Modify the new Page1.ps1" } -class "text-monospace"
+                p { "3. Run Build-WEBHtmlPages" } -class "text-monospace"
+                p { "After each changes on one or more Script-Page, you must run Build-WEBHtmlPages to publish the changes to the HTML-File." }
+                p { 
+                    "For more information read about "
+                    a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    " on github.com"
+                }
+            }
+            #endregion
             
-                p {
-                    h2 $page.ToUpper()
-                }
-    
-            }
-            #endregion
-
-            #region Section 2
-            div -id "2" -class 'container-fluid' -Content {
-
-                h3 "Automated $($page.ToUpper()) Page"
-
-                p {
-                    "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-                }
-
-            }
-            #endregion
-                
             Include -Name footer
-
+                
         } 
-
+    
     }
     
 }

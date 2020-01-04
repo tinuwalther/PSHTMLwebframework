@@ -1,4 +1,6 @@
-$page = 'home'
+$page  = 'home'
+$Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
+$Title = "PSHTMLwebexample"
 
 $HTML = html {
 
@@ -11,46 +13,70 @@ $HTML = html {
         Script -src "Assets/BootStrap/bootstrap.min.js"
         link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
         
-        Title "$($page.ToUpper()) | PSHTMLwebexample"
+        Title "$($page.ToUpper()) | $($Title)"
     }
 
     body {
 
-        div -Class "container" -Content {
+        div -Class "container pt-4" -Content {
 
-            Include -Name header
+            header {
 
-            #region Section 1
-            div -id "1" -class 'jumbotron container-fluid' -content {
-            
-                p {
-                    h2 $page.ToUpper()
+                ul -Content {
+
+                    Include -Name header
+
+                    #FixedLinks
+                    li -Content {
+                        a -href "https://pshtml.readthedocs.io/" -Content {
+                            "PSHTML"
+                        } -Target _blank
+                    }
+                    li -Content {
+                        a -href "https://getbootstrap.com/" -Content {
+                            "Bootstrap"
+                        } -Target _blank
+                    }
+                    li -Content {
+                        a -href "https://www.w3schools.com/" -Content {
+                            "w3schools"
+                        } -Target _blank
+                    }
+
                 }
+
+            }
+
+            #region jumbotron
+            div -id "j1" -class 'jumbotron text-center' -content {
+        
+                p {
+                    h1 "$($Title)"
+                }
+
+                hr
+
+                p {
+                    "Automatically created website "
+                    b { $($Label) }
+                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    " | Generated with $($link)"
+                }
+            } 
+            #endregion
+
+            #region Section
+            div -id "1" -class 'container-fluid text-center' -Content {
+
+                img -src "Assets/IMG/words.png" -class "img-rounded mx-auto d-block"
+
             }
             #endregion
 
-            #region Section 2
+            #region Section
             div -id "2" -class 'container-fluid' -Content {
 
-                h3 "Automated $($page.ToUpper()) Page"
-
-            }
-            div -id "img1" -class 'container-fluid' -Content {
-
-                img -src "Assets/IMG/words.png" -class "img-thumbnail" 
-
-            }
-            #endregion
-
-            #region Section 3
-            div -id "3" -class 'container-fluid' -Content {
-
                 h4 "Lorem ipsum dolor sit amet"
-
-                p {
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
-                    "Generated with $($link)"
-                }
 
                 p {
                     "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
@@ -62,7 +88,7 @@ $HTML = html {
             Include -Name footer
                 
         } 
-
+    
     }
     
 }

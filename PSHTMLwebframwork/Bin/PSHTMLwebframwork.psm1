@@ -1,5 +1,5 @@
 <#
-    Generated at 12/27/2019 13:34:16 by Martin Walther
+    Generated at 01/04/2020 10:24:27 by Martin Walther
 #>
 #region namespace PSHTMLwebframwork
 
@@ -122,6 +122,16 @@ function New-WEBPage{
 
         $newpage | ForEach-Object {
             Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($_).ps1" -PassThru | Select-Object -ExpandProperty FullName
+            $Label = (Get-Culture).TextInfo.ToTitleCase($_.ToLower())
+            $Menue = @"
+li -Content {
+    a -href "$($_).html" -Content {
+        "$($Label)"
+    }
+}
+
+"@
+            Add-Content -Path "$($PSBinPath)\Includes\header.ps1" -Value $Menue -PassThru
         }
 
         Write-Host "[NEW] [END ] Process" -ForegroundColor Green	

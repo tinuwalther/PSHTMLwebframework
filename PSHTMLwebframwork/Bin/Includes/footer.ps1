@@ -5,10 +5,14 @@ Footer {
         hr
 
         $PSHTMLlink = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  -Target _blank
-        p {
-            "Generated with $($PSHTMLlink)"
+
+        a -href "index.html" -class "badge badge-pill badge-primary" -Content {
+            "Home"
         }
         
+        " | Based on $($PSHTMLlink)"
+        
+        hr
     }
     
 }

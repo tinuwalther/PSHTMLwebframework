@@ -5,6 +5,9 @@ if((Get-Module -Name Pester).Version -match '^3\.\d{1}\.\d{1}'){
     Import-Module -Name Pester -MinimumVersion 4.4.1
 }
 
+if(Get-Module -Name PSHTMLwebframework){
+    Remove-Module -Name PSHTMLwebframework
+}
 Write-Host "[BUILD] [START] Launching Build Process" -ForegroundColor Green	
 
 #region prepare folders

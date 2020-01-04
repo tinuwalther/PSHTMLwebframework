@@ -38,7 +38,6 @@ To create a new Webpage from the Template, run the following commands:
 1. Run New-WEBPage -newpage Page1
 2. Modify the new Page1.ps1
 3. Run Build-WEBHtmlPages
-4. Add the new Page1 to the header-menu
 
 After each changes on one or more Script-Page, you must run Build-WEBHtmlPages to publish the changes to the HTML-File.
 
@@ -54,40 +53,16 @@ To publish the website on your personal web space:
 To change the header, edit the Script header.ps1 in Bin/Includes:
 
 ````powershell
-header {
 
-    ul -Content {
-
-        #HomePage
-        li -Content {
-            a -href "index.html" -Content {
-                "Home"
-            }
-        }
-
-        #NewPages
-
-
-        #FixedLinks
-        li -Content {
-            a -href "https://pshtml.readthedocs.io/" -Content {
-                "PSHTML documentation"
-            } -Target _blank
-        }
-        li -Content {
-            a -href "https://getbootstrap.com/" -Content {
-                "Bootstrap Help"
-            } -Target _blank
-        }
-        li -Content {
-            a -href "https://www.w3schools.com/" -Content {
-                "HTML Help"
-            } -Target _blank
-        }
-
+#HomePage
+li -Content {
+    a -href "index.html" -Content {
+        "Home"
     }
-
 }
+
+#NewPages
+New pages will be automatically added with the Build-WEBHtmlPages-Command.
 ````
 
 ## Change the footer
@@ -101,11 +76,15 @@ Footer {
 
         hr
 
-        $PSHTMLlink = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  
-        p {
-            "Generated with $($PSHTMLlink)"
+        $PSHTMLlink = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  -Target _blank
+
+        a -href "index.html" -class "badge badge-pill badge-primary" -Content {
+            "Home"
         }
 
+        " | Based on $($PSHTMLlink)"
+
+        hr
     }
 
 }
