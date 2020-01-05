@@ -1,6 +1,6 @@
 $page  = $MyInvocation.MyCommand.Name -replace '.ps1'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title = "PSHTMLwebexample"
+$Title = "PSHTML Webexample"
 
 $HTML = html {
 
@@ -59,7 +59,7 @@ $HTML = html {
                 p {
                     "Automatically created website "
                     b { $($Label) }
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
                     " | Generated with $($link)"
                 }
             } 

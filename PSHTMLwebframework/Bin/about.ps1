@@ -1,6 +1,6 @@
 $page  = $MyInvocation.MyCommand.Name -replace '.ps1'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title = "PSHTMLwebexample"
+$Title = "PSHTML Webexample"
 
 $HTML = html {
 
@@ -59,7 +59,7 @@ $HTML = html {
                 p {
                     "Automatically created website "
                     b { $($Label) }
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
                     " | Generated with $($link)"
                 }
             } 
@@ -68,33 +68,33 @@ $HTML = html {
             #region Section
             div -id "1" -class 'container-fluid' -Content {
 
-                h1 "$($Label) PSHTMLwebframework"
+                h1 "$($Label) PSHTML Webframework"
 
                 p { "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts." }
 
                 h2 "Create the Webframework"
 
                 p { "To create the Webframework with PSHTMLwebframework, run the following commands:" }
-                p { "1. git clone https://github.com/tinuwalther/PSHTMLwebframwork.git" } -class "text-monospace"
+                p { "1. git clone https://github.com/tinuwalther/PSHTMLwebframework.git" } -class "text-monospace"
                 p { "2. git checkout develop" } -class "text-monospace"
                 p { "3. git pull" } -class "text-monospace"
 
                 h2 "Build the Home page"
 
                 p { "To build the Home page (index.html), run the following commands:" }
-                p { "1. Import-Module .\PSHTMLwebframwork.psd1" } -class "text-monospace"
-                p { "2. Run Build-WEBHtmlPages" } -class "text-monospace"
+                p { "1. Import-Module -Name .\PSHTMLwebframework.psd1" } -class "text-monospace"
+                p { "2. Run Publish-WEBHtmlPages" } -class "text-monospace"
 
                 h2 "Create a new Webpage"
 
                 p { "To create a new Webpage from the Template, run the following commands:" }
                 p { "1. Run New-WEBPage -newpage Page1" } -class "text-monospace"
                 p { "2. Modify the new Page1.ps1" } -class "text-monospace"
-                p { "3. Run Build-WEBHtmlPages" } -class "text-monospace"
-                p { "After each changes on one or more Script-Page, you must run Build-WEBHtmlPages to publish the changes to the HTML-File." }
+                p { "3. Run Publish-WEBHtmlPages" } -class "text-monospace"
+                p { "After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File." }
                 p { 
                     "For more information read about "
-                    a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframwork/blob/develop/README.md" -Target _blank
+                    a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
                     " on github.com"
                 }
             }

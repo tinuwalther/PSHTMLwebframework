@@ -28,8 +28,8 @@ To create the Webframework with PSHTMLwebframework, run the following commands:
 
 To build the Home page (index.html), run the following commands:
 
-1. Import-Module .\PSHTMLwebframwork.psd1
-2. Run Build-WEBHtmlPages
+1. Import-Module -Name .\PSHTMLwebframweork.psd1
+2. Run Publish-WEBHtmlPages
 
 ## Create a new Webpage
 
@@ -37,16 +37,16 @@ To create a new Webpage from the Template, run the following commands:
 
 1. Run New-WEBPage -newpage Page1
 2. Modify the new Page1.ps1
-3. Run Build-WEBHtmlPages
+3. Run Publish-WEBHtmlPages
 
-After each changes on one or more Script-Page, you must run Build-WEBHtmlPages to publish the changes to the HTML-File.
+After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File.
 
 ## Publish the website
 
 To publish the website on your personal web space:
 
-1. Remove the Folder Bin from the PSHTMLwebframwork
-2. Upload the content of PSHTMLwebframwork to your web space
+1. Remove the Folder Bin from the PSHTMLwebframweork
+2. Upload the content of PSHTMLwebframweork to your web space
 
 ## Change the header
 
@@ -176,7 +176,7 @@ ul {
 The PSHTMLwebframework contains the following files and folders:
 
 ````Text
-+---PSHTMLwebframwork
++---PSHTMLwebframweork
 |   |   index.html
 |   |
 |   +---Assets
@@ -197,8 +197,8 @@ The PSHTMLwebframework contains the following files and folders:
 |   +---Bin
 |   |   |   index.ps1
 |   |   |   Load-Environment.ps1
-|   |   |   PSHTMLwebframwork.psd1
-|   |   |   PSHTMLwebframwork.psm1
+|   |   |   PSHTMLwebframweork.psd1
+|   |   |   PSHTMLwebframweork.psm1
 |   |   |
 |   |   +---Includes
 |   |   |       footer.ps1

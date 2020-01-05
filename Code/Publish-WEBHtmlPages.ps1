@@ -1,5 +1,5 @@
 
-function Build-WEBHtmlPages{
+function Publish-WEBHtmlPages{
 
     <#
 
