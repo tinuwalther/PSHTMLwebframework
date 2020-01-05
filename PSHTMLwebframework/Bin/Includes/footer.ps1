@@ -1,18 +1,19 @@
-Footer {
 
-    div -id "footer" -class "container-fluid" -Content {
+div -id "footer" -class "container-fluid text-center" -Content {
 
-        hr
+    hr
 
-        $PSHTMLlink = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  -Target _blank
-
-        a -href "index.html" -class "badge badge-pill badge-primary" -Content {
-            "Home"
-        }
-        
-        " | Based on $($PSHTMLlink)"
-        
-        hr
+    a -href "#" -class "badge badge-primary" -Content {
+        "Top"
     }
-    
+
+    $PSHTMLlink    = a {"PSHTML"} -href "https://github.com/Stephanevg/PSHTML"  -Target _blank
+    " | Based on $($PSHTMLlink) | "
+
+    span -class "badge badge-primary" -Content {
+        "v0.0.7"
+    }
+
+    hr
+
 }

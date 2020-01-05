@@ -22,25 +22,25 @@ $HTML = html {
 
             header {
 
-                ul -Content {
+                nav -class "navbar navbar-expand-sm bg-dark fixed-top" -content {
 
-                    Include -Name header
+                    ul -class "navbar-nav" -content {
 
-                    #FixedLinks
-                    li -Content {
-                        a -href "https://pshtml.readthedocs.io/" -Content {
-                            "PSHTML"
-                        } -Target _blank
-                    }
-                    li -Content {
-                        a -href "https://getbootstrap.com/" -Content {
-                            "Bootstrap"
-                        } -Target _blank
-                    }
-                    li -Content {
-                        a -href "https://www.w3schools.com/" -Content {
-                            "w3schools"
-                        } -Target _blank
+                        Include navbar
+
+                        #FixedLinks
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                        }
+                
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+                        }
+                
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+                        }
+                
                     }
 
                 }
@@ -77,7 +77,11 @@ $HTML = html {
             }
             #endregion
             
-            Include -Name footer
+            Footer {
+            
+                Include -Name footer
+                
+            }
                 
         } 
     

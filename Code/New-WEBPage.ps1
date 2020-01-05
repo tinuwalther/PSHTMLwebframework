@@ -42,14 +42,16 @@ function New-WEBPage{
             Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($_).ps1" -PassThru | Select-Object -ExpandProperty FullName
             $Label = (Get-Culture).TextInfo.ToTitleCase($_.ToLower())
             $Menue = @"
-li -Content {
-    a -href "$($_).html" -Content {
+li -class "nav-item" -content {
+
+    a -class "nav-link" -href "$($_).html" -content {
         "$($Label)"
     }
+
 }
 
 "@
-            Add-Content -Path "$($PSBinPath)\Includes\header.ps1" -Value $Menue -PassThru
+            Add-Content -Path "$($PSBinPath)\Includes\navbar.ps1" -Value $Menue -PassThru
         }
 
         Write-Host "[NEW] [END ] Process" -ForegroundColor Green	
