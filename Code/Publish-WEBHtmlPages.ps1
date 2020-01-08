@@ -38,7 +38,7 @@ function Publish-WEBHtmlPages{
 
         Write-Host "[BUILD] [START] Launching Build Process" -ForegroundColor Green	
 
-        $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.ps1') 
+        $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
             powershell.exe -File $($_.FullName)
         }

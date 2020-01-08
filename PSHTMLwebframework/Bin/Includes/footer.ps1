@@ -1,7 +1,5 @@
 
-div -id "footer" -class "container-fluid text-center" -Content {
-
-    hr
+span -id "footer" -class "text-center" -Content {
 
     a -href "#" -class "badge badge-primary" -Content {
         "Top"
@@ -11,9 +9,7 @@ div -id "footer" -class "container-fluid text-center" -Content {
     " | Based on $($PSHTMLlink) | "
 
     span -class "badge badge-primary" -Content {
-        "v0.0.7"
+        "v0.0.10"
     }
-
-    hr
 
 }

@@ -1,15 +1,13 @@
+<#
+a -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+a -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+a -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+#>
 
-#HomePage
-li -Content {
-    a -href "index.html" -Content {
-        "Home"
-    }
+span -Content {
+    img -src "Assets/IMG/pshtml.png" -alt "Bootstrap" -style "width:60px"
 }
 
-#NewPages
-li -Content {
-    a -href "about.html" -Content {
-        "About"
-    }
+span -content {
+    "I ♥ PS C:\ > PSHTML Webframework - Build simple Websites with PowerShell"
 }
-

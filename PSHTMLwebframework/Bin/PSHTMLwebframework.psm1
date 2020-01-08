@@ -1,5 +1,5 @@
-<#
-    Generated at 01/05/2020 16:38:10 by Martin Walther
+﻿<#
+    Generated at 01/07/2020 10:44:37 by Martin Walther
 #>
 #region namespace PSHTMLwebframework
 
@@ -43,7 +43,7 @@ function New-WEBPage{
         Write-Host "[NEW] [START] Launching new page process" -ForegroundColor Green	
 
         $newpage | ForEach-Object {
-            Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($_).ps1" -PassThru | Select-Object -ExpandProperty FullName
+            Copy-Item -Path "$($PSTemplatePath)\page.html.ps1" -Destination "$($PSBinPath)\$($_).html.ps1" -PassThru | Select-Object -ExpandProperty FullName
             $Label = (Get-Culture).TextInfo.ToTitleCase($_.ToLower())
             $Menue = @"
 li -class "nav-item" -content {
@@ -129,7 +129,7 @@ function Publish-WEBHtmlPages{
 
         Write-Host "[BUILD] [START] Launching Build Process" -ForegroundColor Green	
 
-        $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.ps1') 
+        $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
             powershell.exe -File $($_.FullName)
         }

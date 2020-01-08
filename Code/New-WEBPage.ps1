@@ -39,7 +39,7 @@ function New-WEBPage{
         Write-Host "[NEW] [START] Launching new page process" -ForegroundColor Green	
 
         $newpage | ForEach-Object {
-            Copy-Item -Path "$($PSTemplatePath)\page.ps1" -Destination "$($PSBinPath)\$($_).ps1" -PassThru | Select-Object -ExpandProperty FullName
+            Copy-Item -Path "$($PSTemplatePath)\page.html.ps1" -Destination "$($PSBinPath)\$($_).html.ps1" -PassThru | Select-Object -ExpandProperty FullName
             $Label = (Get-Culture).TextInfo.ToTitleCase($_.ToLower())
             $Menue = @"
 li -class "nav-item" -content {
