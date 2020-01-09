@@ -2,6 +2,7 @@
 
 Version | Description | Date | Author
 -|-|-|-
+V0.0.11 | Change CSS Stylesheet | 2020-01-08 | Martin Walther
 V0.0.10 | Update bootstrap.min.js | 2020-01-08 | Martin Walther
 V0.0.9 | Update to Bootstrap v4.4.1 | 2020-01-07 | Martin Walther
 V0.0.8 | Changing style | 2020-01-06 | Martin Walther

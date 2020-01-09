@@ -1,7 +1,7 @@
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 $Title = "PSHTML Webexample"
-$ContainerStyleOut = "container-md pt-3"
+$ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
 $HTML = html {
@@ -32,23 +32,38 @@ $HTML = html {
 
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
-            ul -class "navbar-nav" -content {
+            # <!-- Toggler/collapsibe Button -->
+            button -class "navbar-toggler" -Attributes @{
+                "type"="button"
+                "data-toggle"="collapse"
+                "data-target"="#collapsibleNavbar"
+            } -content {
+                span -class "navbar-toggler-icon"
+            }
 
-                Include navbar
+            # <!-- Navbar links -->
 
-                #FixedLinks
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+            div -class "collapse navbar-collapse" -id "collapsibleNavbar" -Content {
+
+                ul -class "navbar-nav" -content {
+
+                    Include navbar
+    
+                    #FixedLinks
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+                    }
+            
                 }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
-                }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
-                }
-        
+    
             }
 
         }
@@ -76,27 +91,72 @@ $HTML = html {
 
                 h1 "$($Label) PSHTML Webframework"
 
+                p {
+                    a -href "https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_template1" -Target _blank -Content {
+                        "Bootstrap 4 Website Example"
+                    }
+                }
+
             }
             #endregion
 
-            #region Section
+            #region Panel
             div -id "2" -class "$ContainerStyleIn" -Content {
 
-                button -class "btn btn-primary" -Attributes @{
-                    "type"="button"
-                    "data-toggle"="collapse"
-                    "data-target"="#demo"
-                } -Content {
-                    "Click Me"
-                }
-                
-                br
-                br
+                # <!-- Panel style -->
+                div -id "1" -Class "row" -Content {
 
-                p -id "demo" -class "collapse" -Content {
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
-                  "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
-                  "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    # <!-- Panel left -->
+                    div -class "col-sm-4" -content {
+                        h3 "Day one in Paradise"
+                    }
+
+                    # <!-- Panel right -->
+                    div -class "col-sm-8" -content {
+
+                        h4 "First Example"
+
+                        p {
+                            "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                        }
+
+                        p {
+                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+                            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        }
+
+                    }
+
+                }
+
+                hr
+
+                # <!-- Panel style -->
+                div -id "2" -Class "row" -Content {
+
+                    # <!-- Panel left -->
+                    div -class "col-sm-4" -content {
+                        h3 "Day two in Paradise"
+                    }
+
+                    # <!-- Panel right -->
+                    div -class "col-sm-8" -content {
+
+                        h4 "Second Example"
+
+                        p {
+                            "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                        }
+
+                        p {
+                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+                            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        }
+
+                    }
+
                 }
 
             }

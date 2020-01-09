@@ -1,7 +1,7 @@
 $page    = 'home'
 $Label   = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 $Title   = "PSHTML Web example"
-$ContainerStyleOut = "container-md pt-3"
+$ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
 $HTML = html {
@@ -9,7 +9,7 @@ $HTML = html {
     head {
         
         Meta -name viewport -content_tag "width=device-width, initial-scale=1.0"
-        
+
         link -rel 'icon' -href 'https://avatars1.githubusercontent.com/u/56639134?s=400&u=9c1a1dc1a8d8718534bf7d455042c7382cc419a0&v=4' -type 'image/x-icon'
         Link -href "Style/style.css" -rel stylesheet
         Link -href "Assets/BootStrap/bootstrap.min.css" -rel stylesheet
@@ -32,23 +32,37 @@ $HTML = html {
 
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
-            ul -class "navbar-nav" -content {
+            # <!-- Toggler/collapsibe Button -->
+            button -class "navbar-toggler" -Attributes @{
+                "type"="button"
+                "data-toggle"="collapse"
+                "data-target"="#collapsibleNavbar"
+            } -content {
+                span -class "navbar-toggler-icon"
+            }
 
-                Include navbar
+            # <!-- Navbar links -->
+            div -class "collapse navbar-collapse" -id "collapsibleNavbar" -Content {
 
-                #FixedLinks
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                ul -class "navbar-nav" -content {
+
+                    Include navbar
+    
+                    #FixedLinks
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+                    }
+            
                 }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
-                }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
-                }
-        
+    
             }
 
         }
@@ -102,7 +116,7 @@ $HTML = html {
 
             #endregion
             
-        } 
+        }
     
     }
 

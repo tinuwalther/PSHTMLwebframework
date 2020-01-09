@@ -7,9 +7,6 @@ a -class "navbar-brand" -href "#" -content {
 }
 #>
 
-# <!-- Toggler/collapsibe Button -->
-#button -class "navbar-toggler" -data-target "#collapsibleNavbar" -data-toggle "collapse" -type "button"
-
 # <!-- HomePage -->
 li -class "nav-item" -content {
 

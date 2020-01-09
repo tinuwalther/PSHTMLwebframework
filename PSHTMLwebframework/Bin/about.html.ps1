@@ -1,7 +1,7 @@
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 $Title = "PSHTML Web example"
-$ContainerStyleOut = "container-md  pt-3"
+$ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
 $HTML = html {
@@ -31,23 +31,37 @@ $HTML = html {
 
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
-            ul -class "navbar-nav" -content {
+            # <!-- Toggler/collapsibe Button -->
+            button -class "navbar-toggler" -Attributes @{
+                "type"="button"
+                "data-toggle"="collapse"
+                "data-target"="#collapsibleNavbar"
+            } -content {
+                span -class "navbar-toggler-icon"
+            }
 
-                Include navbar
+            # <!-- Navbar links -->
+            div -class "collapse navbar-collapse" -id "collapsibleNavbar" -Content {
 
-                #FixedLinks
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                ul -class "navbar-nav" -content {
+
+                    Include navbar
+    
+                    #FixedLinks
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+                    }
+            
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+                    }
+            
                 }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
-                }
-        
-                li -class "nav-item" -content {
-                    a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
-                }
-        
+    
             }
 
         }
