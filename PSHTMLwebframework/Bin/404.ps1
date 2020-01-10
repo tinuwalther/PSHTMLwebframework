@@ -1,6 +1,6 @@
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title = "PSHTML Web example"
+$Title = "PSHTML Webexample"
 $ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
@@ -19,6 +19,7 @@ $HTML = html {
         Script -src "Assets/BootStrap/bootstrap.min.js"
         
         Title "$($page.ToUpper()) | $($Title)"
+
     }
 
     body {
@@ -85,7 +86,7 @@ $HTML = html {
             #endregion
 
             #region Section
-            div -id "1" -class "$ContainerStyleIn" -Content {
+            div -id "1" -class "$ContainerStyleIn text-center" -Content {
 
                 h1 "$($Label) PSHTML Webframework"
 
@@ -93,63 +94,40 @@ $HTML = html {
             #endregion
 
             #region Section
-            div -id "2" -class "$ContainerStyleIn" -Content {
+            div -id "2" -class "$ContainerStyleIn text-center" -Content {
 
-                p { "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts." }
+                br
 
-                h2 "Create the Webframework"
+                img -src "Assets/IMG/404.png" -class "img-rounded mx-auto d-block" -height "30%"
 
-                p {"To create the Webframework with PSHTMLwebframework, run the following commands:"}
-                pre -content {
-                    "git clone https://github.com/tinuwalther/PSHTMLwebframework.git"
-                    br
-                    "git checkout develop"
-                    br
-                    "git pull"
-                    br
-                    ".\CI\Build-Module.ps1"
+                br
+
+                h2 "File not found"
+
+                p {
+                    "The site configured at this address does not contain the requested file."
                 }
 
-                h2 "Build the Home page"
-
-                p { "To build the Home page (index.html), run the following commands:" }
-                pre -content {
-                    "Import-Module -Name .\PSHTMLwebframework.psd1 -Force"
+                p {
+                    "If this is your site, make sure that the filename case matches the URL."
                     br
-                    "Publish-WEBHtmlPages"
-                }
-
-                h2 "Create a new Webpage"
-
-                p { "To create a new Webpage from the Template, run the following commands:" }
-                pre -content {
-                    "New-WEBPage -newpage MyNewScriptPage"
-                    br
-                    "Modify the new MyNewScriptPage.ps1"
-                    br
-                    "Publish-WEBHtmlPages"
-                }
-                p { "After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File." }
-                p { 
-                    "For more information read about "
-                    a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
-                    " on github.com"
+                    "For root URLs (like http://example.com/) you must provide an index.html file."
                 }
 
                 br
-                
+
             }
 
             hr
 
             #endregion
-            
+                
         } 
     
     }
-
+            
     Footer {
-                
+            
         Include -Name footer
         
     }

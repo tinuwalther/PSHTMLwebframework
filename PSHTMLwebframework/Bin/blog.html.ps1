@@ -159,6 +159,8 @@ $HTML = html {
 
                 }
 
+                br
+
             }
 
             hr
