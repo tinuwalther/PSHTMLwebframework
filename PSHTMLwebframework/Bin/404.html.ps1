@@ -92,7 +92,7 @@ $HTML = html {
 
                 article -id "SiteOverview" -Content {
 
-                    div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "1" -class "$ContainerStyleIn text-center" -Content {
 
                         h1 "$($Label) PSHTML Webframework"
 
