@@ -4,7 +4,6 @@ $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 
 # <!-- Here you can change the values of the variables below -->
 $WebsiteTitle      = "PSHTML Webexample"
-$MetaKeywords      = "PSHTML Webexample"
 $ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
@@ -15,9 +14,7 @@ $HTML = html {
     head {
                 
         Include meta
-
-        meta -name "keywords" -content_tag "$($MetaKeywords)"
-
+        
         Title "$($page.ToUpper()) | $($WebsiteTitle)"
     }
 
@@ -109,24 +106,36 @@ $HTML = html {
 
                 article -id "SiteContent1" -Content {
 
-                    div -id "2" -class "$ContainerStyleIn" -Content {
+                    div -id "2" -class "$ContainerStyleIn text-center" -Content {
 
-                        h2 "Lorem ipsum dolor sit amet"
+                        br
+
+                        img -src "Assets/IMG/404.png" -class "img-rounded mx-auto d-block" -height "30%"
+
+                        br
+
+                        h2 "File not found"
 
                         p {
-                            "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                            "The site configured at this address does not contain the requested file."
+                        }
+
+                        p {
+                            "If this is your site, make sure that the filename case matches the URL."
+                            br
+                            "For root URLs (like http://example.com/) you must provide an index.html file."
                         }
 
                     }
-
+                    
                 }
-            
+
                 br
                     
-            } 
-
+            }
+    
         }
-
+            
         # <!-- Do not change the footer -->
         Footer {
                 

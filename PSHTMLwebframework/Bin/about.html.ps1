@@ -1,34 +1,33 @@
+# <!-- Do not change this code -->
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title = "PSHTML Web example"
+
+# <!-- Here you can change the values of the variables below -->
+$WebsiteTitle      = "PSHTML Webexample"
 $ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
+# <!-- Here you can change the content for your website, but never change the head, the header, the nav, or the footer -->
 $HTML = html {
 
+    # <!-- Do not change the head -->
     head {
+                
+        Include meta
         
-        Meta -name viewport -content_tag "width=device-width, initial-scale=1.0"
-        
-        link -rel 'icon' -href 'https://avatars1.githubusercontent.com/u/56639134?s=400&u=9c1a1dc1a8d8718534bf7d455042c7382cc419a0&v=4' -type 'image/x-icon'
-        Link -href "Style/style.css" -rel stylesheet
-        Link -href "Assets/BootStrap/bootstrap.min.css" -rel stylesheet
-        link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
-
-        Script -src "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-        Script -src "Assets/BootStrap/bootstrap.min.js"
-        
-        Title "$($page.ToUpper()) | $($Title)"
+        Title "$($page.ToUpper()) | $($WebsiteTitle)"
     }
 
     body {
 
+        # <!-- Do not change the header -->
         header {
 
             Include header
 
         }
 
+        # <!-- Do not change the nav -->
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
             # <!-- Toggler/collapsibe Button -->
@@ -66,94 +65,149 @@ $HTML = html {
 
         }
 
-        div -Class "$ContainerStyleOut" -Content {
+        # <!-- Here you can change the content for your website -->
+        section -id "Section1" -Content {
 
-            #region jumbotron
-            div -id "j1" -class 'jumbotron text-center' -content {
-        
-                h1 "$($Title)"
+            div -Class "$ContainerStyleOut" -Content {
 
-                hr
+                # <!-- Here you can change the content for your website -->
 
-                p {
-                    "Automatically created website "
-                    b { $($Label) }
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
-                    " | Generated with $($link)"
-                }
-            } 
-            #endregion
+                article -id "Jumbotron1" -Content {
 
-            #region Section
-            div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "j1" -class 'jumbotron text-center' -content {
+                
+                        h1 "$($WebsiteTitle)"
 
-                h1 "$($Label) PSHTML Webframework"
+                        hr
 
-            }
-            #endregion
+                        p {
+                            "Automatically created website "
+                            b { $($Label) }
+                            $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
+                            " | Generated with $($link)"
+                        }
+                    } 
 
-            #region Section
-            div -id "2" -class "$ContainerStyleIn" -Content {
-
-                p { "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts." }
-
-                h2 "Create the Webframework"
-
-                p {"To create the Webframework with PSHTMLwebframework, run the following commands:"}
-                pre -content {
-                    "git clone https://github.com/tinuwalther/PSHTMLwebframework.git"
-                    br
-                    "git checkout develop"
-                    br
-                    "git pull"
-                    br
-                    ".\CI\Build-Module.ps1"
                 }
 
-                h2 "Build the Home page"
+                article -id "SiteOverview" -Content {
 
-                p { "To build the Home page (index.html), run the following commands:" }
-                pre -content {
-                    "Import-Module -Name .\PSHTMLwebframework.psd1 -Force"
-                    br
-                    "Publish-WEBHtmlPages"
+                    div -id "1" -class "$ContainerStyleIn" -Content {
+
+                        h1 "$($Label) PSHTML Webframework"
+
+                        p {
+                            "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts."
+                        }
+
+                    }
+
                 }
 
-                h2 "Create a new Webpage"
+                article -id "SiteContent1" -Content {
 
-                p { "To create a new Webpage from the Template, run the following commands:" }
-                pre -content {
-                    "New-WEBPage -newpage MyNewScriptPage"
-                    br
-                    "Modify the new MyNewScriptPage.ps1"
-                    br
-                    "Publish-WEBHtmlPages"
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        h2 "Create the Webframework"
+
+                        p {"To create the Webframework with PSHTMLwebframework, run the following commands:"}
+                        
+                        pre -content {
+                            "git clone https://github.com/tinuwalther/PSHTMLwebframework.git"
+                            br
+                            "git checkout develop"
+                            br
+                            "git pull"
+                            br
+                            ".\CI\Build-Module.ps1"
+                        }
+                    
+                    }
+
                 }
-                p { "After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File." }
-                p { 
-                    "For more information read about "
-                    a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
-                    " on github.com"
+            
+                article -id "SiteContent2" -Content {
+
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        h2 "Build the Home page"
+
+                        p { "To build the Home page (index.html), run the following commands:" }
+                        
+                        pre -content {
+                            "Import-Module -Name .\PSHTMLwebframework.psd1 -Force"
+                            br
+                            "Publish-WEBHtmlPages"
+                        }
+                    
+                    }
+
+                }
+            
+                article -id "SiteContent3" -Content {
+
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        h2 "Create a new Webpage"
+
+                        p { "To create a new Webpage from the Template, run the following commands:" }
+                        
+                        pre -content {
+                            "New-WEBPage -newpage MyNewScriptPage"
+                            br
+                            "Modify the new MyNewScriptPage.ps1"
+                            br
+                            "Publish-WEBHtmlPages"
+                        }
+
+                        p { "After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File." }
+                        
+                        p { 
+                            "For more information read about "
+                            a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
+                            " on github.com"
+                        }
+                    
+                    }
+
+                }
+            
+                article -id "SiteContent4" -Content {
+
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        h2 "Publish the Webframework"
+
+                        p { "To publish the Webframework to your provider, following this guid:" }
+                        
+                        pre -content {
+                            "1. Upload the content of your PSHTMLwebframework to your webspace" 
+                            br
+                            "2. Remove the folder Bin in your webspace"
+                            br
+                            "3. Browse to your webspace and enjoy your new Website"
+                        }
+                    
+                    }
+
                 }
 
                 br
                 
-            }
-
-            hr
-
-            #endregion
+            } 
             
-        } 
+        }
     
-    }
+        # <!-- Do not change the footer -->
+        Footer {
+                    
+            Include -Name footer
+            
+        }
 
-    Footer {
-                
-        Include -Name footer
-        
     }
 
 }
 
+# <!-- Do not change this code -->
 $HTML | out-File -Filepath ..\$($page).html -Encoding utf8

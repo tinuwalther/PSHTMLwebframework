@@ -1,35 +1,33 @@
-$page    = 'home'
-$Label   = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title   = "PSHTML Web example"
+# <!-- Do not change this code -->
+$page  = "home"
+$Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
+
+# <!-- Here you can change the values of the variables below -->
+$WebsiteTitle      = "PSHTML Webexample"
 $ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
+# <!-- Here you can change the content for your website, but never change the head, the header, the nav, or the footer -->
 $HTML = html {
 
+    # <!-- Do not change the head -->
     head {
+                
+        Include meta
         
-        Meta -name viewport -content_tag "width=device-width, initial-scale=1.0"
-
-        link -rel 'icon' -href 'https://avatars1.githubusercontent.com/u/56639134?s=400&u=9c1a1dc1a8d8718534bf7d455042c7382cc419a0&v=4' -type 'image/x-icon'
-        Link -href "Style/style.css" -rel stylesheet
-        Link -href "Assets/BootStrap/bootstrap.min.css" -rel stylesheet
-        link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
-
-        Script -src "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-        Script -src "Assets/BootStrap/bootstrap.min.js"
-        
-        Title "$($page.ToUpper()) | $($Title)"
-
+        Title "$($page.ToUpper()) | $($WebsiteTitle)"
     }
 
     body {
         
+        # <!-- Do not change the header -->
         header {
 
             Include header
 
         }
 
+        # <!-- Do not change the nav -->
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
             # <!-- Toggler/collapsibe Button -->
@@ -67,67 +65,89 @@ $HTML = html {
 
         }
 
-        div -Class "$ContainerStyleOut" -Content {
+        # <!-- Here you can change the content for your website -->
+        section -id "Section1" -Content {
 
-            #region jumbotron
-            div -id "j1" -class 'jumbotron text-center' -content {
-        
-                h1 "$($Title)"
+            div -Class "$ContainerStyleOut" -Content {
 
-                hr
+                # <!-- Here you can change the content for your website -->
 
-                p {
-                    "Automatically created website "
-                    b { $($Label) }
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
-                    " | Generated with $($link)"
-                }
-            } 
-            #endregion
+                article -id "Jumbotron1" -Content {
 
-            #region Section
-            div -id "1" -class "$ContainerStyleIn" -Content {
-
-                h1 "$($Label) PSHTML Webframework"
-
-            }
-            #endregion
-
-            #region Section
-            div -id "2" -class "$ContainerStyleIn text-center" -Content {
-
-                img -src "Assets/IMG/words.png" -class "img-rounded mx-auto d-block"
-
-            }
-            #endregion
-
-            #region Section
-            div -id "3" -class "$ContainerStyleIn" -Content {
+                    div -id "j1" -class 'jumbotron text-center' -content {
                 
-                h2 "Lorem ipsum dolor sit amet"
+                        h1 "$($WebsiteTitle)"
 
-                p {
-                    "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                        hr
+
+                        p {
+                            "Automatically created website "
+                            b { $($Label) }
+                            $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
+                            " | Generated with $($link)"
+                        }
+                    } 
+
                 }
 
-                br
+                article -id "SiteOverview" -Content {
 
+                    div -id "1" -class "$ContainerStyleIn" -Content {
+
+                        h1 "$($Label) PSHTML Webframework"
+
+                        p {
+                            "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts."
+                        }
+
+                    }
+
+                }
+
+                article -id "SiteContent1" -Content {
+
+                    div -id "2" -class "$ContainerStyleIn text-center" -Content {
+
+                        div -id "2.1" -class "picture" -Content {
+
+                            img -src "Assets/IMG/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px"
+
+                        }
+
+                    }
+
+                }
+
+                article -id "SiteContent2" -Content {
+
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        h2 "Lorem ipsum dolor sit amet"
+
+                        p {
+                            "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                        }
+
+                    }
+
+                }
+            
+                br
+                
             }
 
-            hr
+        }
 
-            #endregion
+        # <!-- Do not change the footer -->
+        Footer {
+                
+            Include -Name footer
             
         }
     
     }
-
-    Footer {
-            
-        Include -Name footer
-        
-    }
         
 }
 
+# <!-- Do not change this code -->
 $HTML | out-File -Filepath ..\index.html -Encoding utf8

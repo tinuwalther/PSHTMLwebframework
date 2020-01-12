@@ -1,35 +1,33 @@
+# <!-- Do not change this code -->
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
-$Title = "PSHTML Webexample"
+
+# <!-- Here you can change the values of the variables below -->
+$WebsiteTitle      = "PSHTML Webexample"
 $ContainerStyleOut = "container-md pt-3 bg-light text-dark"
 $ContainerStyleIn  = "container-fluid"
 
+# <!-- Here you can change the content for your website, but never change the head, the header, the nav, or the footer -->
 $HTML = html {
 
+    # <!-- Do not change the head -->
     head {
+                
+        Include meta
         
-        Meta -name viewport -content_tag "width=device-width, initial-scale=1.0"
-        
-        link -rel 'icon' -href 'https://avatars1.githubusercontent.com/u/56639134?s=400&u=9c1a1dc1a8d8718534bf7d455042c7382cc419a0&v=4' -type 'image/x-icon'
-        Link -href "Style/style.css" -rel stylesheet
-        Link -href "Assets/BootStrap/bootstrap.min.css" -rel stylesheet
-        link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel "stylesheet"
-
-        Script -src "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-        Script -src "Assets/BootStrap/bootstrap.min.js"
-
-        Title "$($page.ToUpper()) | $($Title)"
-        
+        Title "$($page.ToUpper()) | $($WebsiteTitle)"
     }
 
     body {
 
+        # <!-- Do not change the header -->
         header {
 
             Include header
 
         }
 
+        # <!-- Do not change the nav -->
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
             # <!-- Toggler/collapsibe Button -->
@@ -68,115 +66,138 @@ $HTML = html {
 
         }
 
-        div -Class "$ContainerStyleOut" -Content {
+        section -id "Section1" -Content {
 
-            #region jumbotron
-            div -id "j1" -class 'jumbotron text-center' -content {
-        
-                h1 "$($Title)"
+            div -Class "$ContainerStyleOut" -Content {
 
-                hr
+                # <!-- Here you can change the content for your website -->
 
-                p {
-                    "Automatically created website "
-                    b { $($Label) }
-                    $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
-                    " | Generated with $($link)"
-                }
-            } 
-            #endregion
+                article -id "Jumbotron1" -Content {
 
-            #region Section
-            div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "j1" -class 'jumbotron text-center' -content {
+                
+                        h1 "$($WebsiteTitle)"
 
-                h1 "$($Label) PSHTML Webframework"
-
-                p {
-                    a -href "https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_template1" -Target _blank -Content {
-                        "Bootstrap 4 Website Example"
-                    }
-                }
-
-            }
-            #endregion
-
-            #region Panel
-            div -id "2" -class "$ContainerStyleIn" -Content {
-
-                # <!-- Panel style -->
-                div -id "1" -Class "row" -Content {
-
-                    # <!-- Panel left -->
-                    div -class "col-sm-4" -content {
-                        h3 "Day one in Paradise"
-                    }
-
-                    # <!-- Panel right -->
-                    div -class "col-sm-8" -content {
-
-                        h4 "First Example"
+                        hr
 
                         p {
-                            "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                            "Automatically created website "
+                            b { $($Label) }
+                            $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
+                            " | Generated with $($link)"
                         }
+                    } 
+
+                }
+
+                article -id "SiteOverview" -Content {
+
+                    div -id "1" -class "$ContainerStyleIn" -Content {
+
+                        h1 "$($Label) PSHTML Webframework"
 
                         p {
-                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
-                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
-                            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                            a -href "https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_template1" -Target _blank -Content {
+                                "Bootstrap 4 Website Example"
+                            }
                         }
 
                     }
 
                 }
 
-                hr
+                article -id "Blog1" -Content {
 
-                # <!-- Panel style -->
-                div -id "2" -Class "row" -Content {
+                    #region Panel
+                    div -id "2" -class "$ContainerStyleIn" -Content {
 
-                    # <!-- Panel left -->
-                    div -class "col-sm-4" -content {
-                        h3 "Day two in Paradise"
-                    }
+                        # <!-- Panel style -->
+                        div -id "panel1" -Class "row" -Content {
 
-                    # <!-- Panel right -->
-                    div -class "col-sm-8" -content {
+                            # <!-- Panel left -->
+                            div -class "col-sm-4" -content {
+                                h3 "Day one in Paradise"
+                            }
 
-                        h4 "Second Example"
+                            # <!-- Panel right -->
+                            div -class "col-sm-8" -content {
 
-                        p {
-                            "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                                h4 "First Example"
+
+                                p {
+                                    "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                                }
+
+                                p {
+                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+                                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+                                    "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                }
+
+                            }
+
                         }
 
-                        p {
-                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
-                            "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
-                            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                        hr
+
+                    }
+                    #endregion
+                        
+                }
+
+                article -id "Blog2" -Content {
+
+                    #region Panel
+                    div -id "2" -class "$ContainerStyleIn" -Content {
+
+                        # <!-- Panel style -->
+                        div -id "panel2" -Class "row" -Content {
+
+                            # <!-- Panel left -->
+                            div -class "col-sm-4" -content {
+                                h3 "Day two in Paradise"
+                            }
+
+                            # <!-- Panel right -->
+                            div -class "col-sm-8" -content {
+
+                                h4 "Second Example"
+
+                                p {
+                                    "Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                                }
+
+                                p {
+                                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+                                    "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+                                    "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                }
+
+                            }
+
                         }
 
                     }
-
+                    #endregion
+                        
                 }
 
                 br
 
             }
 
-            hr
+        }
 
-            #endregion
+        # <!-- Do not change the footer -->
+        Footer {
                 
-        } 
-    
-    }
+            Include -Name footer
             
-    Footer {
-            
-        Include -Name footer
-        
+        }
+
     }
 
 }
 
+# <!-- Do not change this code -->
 $HTML | out-File -Filepath ..\$($page).html -Encoding utf8
