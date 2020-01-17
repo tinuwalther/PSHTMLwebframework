@@ -1,12 +1,4 @@
 
-<# <!-- Brand -->
-a -class "navbar-brand" -href "#" -content {
-    
-    img -src "Assets/IMG/pshtml.png" -alt "Logo" -style "width:60px"
-
-}
-#>
-
 # <!-- HomePage -->
 li -class "nav-item" -content {
 

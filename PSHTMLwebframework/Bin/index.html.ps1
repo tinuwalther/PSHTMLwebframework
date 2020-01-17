@@ -30,6 +30,13 @@ $HTML = html {
         # <!-- Do not change the nav -->
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
+            # <!-- Brand -->
+            a -class "navbar-brand" -href "#" -content {
+    
+                img -src "Assets/IMG/pshtml.png" -alt "Logo" -style "width:60px"
+            
+            }
+            
             # <!-- Toggler/collapsibe Button -->
             button -class "navbar-toggler" -Attributes @{
                 "type"="button"

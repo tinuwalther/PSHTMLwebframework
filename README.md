@@ -22,7 +22,9 @@ The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scri
 To create the Webframework with PSHTMLwebframework, run the following commands:
 
 1. Start VSCode or PowerShell ISE
-2. Run the Script Build-Module.ps1
+2. git clone https://github.com/tinuwalther/PSHTMLwebframework.git
+3. git pull
+4. .\CI\Build-Module.ps1
 
 ## Build the Home page
 
