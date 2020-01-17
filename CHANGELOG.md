@@ -2,6 +2,7 @@
 
 Version | Description | Date | Author
 -|-|-|-
+V0.0.15 | Add Brand to navbar | 2020-01-15 | Martin Walther
 V0.0.14 | Change the HTML Layout to semantic elements | 2020-01-12 | Martin Walther
 V0.0.13 | Add keywords | 2020-01-12 | Martin Walther
 V0.0.12 | Add 404 page | 2020-01-10 | Martin Walther
