@@ -1,10 +1,21 @@
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$false)]
+    [String] $WebsiteTitle,
+
+    [ValidateSet("fixed width","full width")]
+    [Parameter(Mandatory=$false)]
+    [String] $ContainerStyle
+)
+
 # <!-- Do not change this code -->
 $page  = "home"
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 
-# <!-- Here you can change the values of the variables below -->
-$WebsiteTitle      = "PSHTML Webexample"
-$ContainerStyleOut = "container-md pt-3 bg-light text-dark"
+switch($ContainerStyle){
+    "fixed width" {$ContainerStyleOut = "container-md pt-3 bg-light text-dark"}
+    "full width"  {$ContainerStyleOut = "container-fluid pt-3 bg-light text-dark"}
+}
 $ContainerStyleIn  = "container-fluid"
 
 # <!-- Here you can change the content for your website, but never change the head, the header, the nav, or the footer -->

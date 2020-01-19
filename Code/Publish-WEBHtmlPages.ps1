@@ -23,7 +23,11 @@ function Publish-WEBHtmlPages{
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $false)]
-        [String]$Param1
+        [String]$WebsiteTitle = "PSHTML Webexample",
+
+        [ValidateSet("fixed width","full width")]
+        [Parameter(Mandatory = $false)]
+        [String]$ContainerStyle = "fixed width"
     )
     $function = $($MyInvocation.MyCommand.Name)
     Write-Verbose "Running $function"
@@ -40,7 +44,7 @@ function Publish-WEBHtmlPages{
 
         $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
-            powershell.exe -File $($_.FullName)
+            powershell.exe -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
         }
 
         Get-ChildItem -Path $HTMLRoot -Filter '*.html'

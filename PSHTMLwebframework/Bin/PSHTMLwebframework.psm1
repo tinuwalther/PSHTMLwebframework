@@ -1,5 +1,5 @@
 ﻿<#
-    Generated at 01/17/2020 17:29:02 by Martin Walther
+    Generated at 01/19/2020 19:01:55 by Martin Walther
 #>
 #region namespace PSHTMLwebframework
 
@@ -114,7 +114,11 @@ function Publish-WEBHtmlPages{
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $false)]
-        [String]$Param1
+        [String]$WebsiteTitle = "PSHTML Webexample",
+
+        [ValidateSet("fixed width","full width")]
+        [Parameter(Mandatory = $false)]
+        [String]$ContainerStyle = "fixed width"
     )
     $function = $($MyInvocation.MyCommand.Name)
     Write-Verbose "Running $function"
@@ -131,7 +135,7 @@ function Publish-WEBHtmlPages{
 
         $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
-            powershell.exe -File $($_.FullName)
+            powershell.exe -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
         }
 
         Get-ChildItem -Path $HTMLRoot -Filter '*.html'

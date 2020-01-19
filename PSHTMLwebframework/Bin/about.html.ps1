@@ -1,10 +1,21 @@
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$false)]
+    [String] $WebsiteTitle,
+
+    [ValidateSet("fixed width","full width")]
+    [Parameter(Mandatory=$false)]
+    [String] $ContainerStyle
+)
+
 # <!-- Do not change this code -->
 $page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 
-# <!-- Here you can change the values of the variables below -->
-$WebsiteTitle      = "PSHTML Webexample"
-$ContainerStyleOut = "container-md pt-3 bg-light text-dark"
+switch($ContainerStyle){
+    "fixed width" {$ContainerStyleOut = "container-md pt-3 bg-light text-dark"}
+    "full width"  {$ContainerStyleOut = "container-fluid pt-3 bg-light text-dark"}
+}
 $ContainerStyleIn  = "container-fluid"
 
 # <!-- Here you can change the content for your website, but never change the head, the header, the nav, or the footer -->
@@ -144,7 +155,7 @@ $HTML = html {
                         pre -content {
                             "Import-Module -Name .\PSHTMLwebframework.psd1 -Force"
                             br
-                            "Publish-WEBHtmlPages"
+                            "Publish-WEBHtmlPages -WebsiteTitle 'PSHTML Webexample' -ContainerStyle 'full width' | 'fixed width'"
                         }
                     
                     }
@@ -164,7 +175,7 @@ $HTML = html {
                             br
                             "Modify the new MyNewScriptPage.ps1"
                             br
-                            "Publish-WEBHtmlPages"
+                            "Publish-WEBHtmlPages -WebsiteTitle 'PSHTML Webexample' -ContainerStyle 'full width' | 'fixed width'"
                         }
 
                         p { "After each changes on one or more Script-Page, you must run Publish-WEBHtmlPages to publish the changes to the HTML-File." }
