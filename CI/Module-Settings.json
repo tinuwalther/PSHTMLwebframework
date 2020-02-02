@@ -1,8 +1,8 @@
-﻿{
-    "ModuleName":  "PSHTMLwebframework",
-    "ModuleVersion":  "0.0.16",
-    "ModuleDescription":  "PSHTML website framework",
-    "ModuleAuthor":  "Martin Walther",
-    "ModuleCompany":  "Martin Walther Foto \u0026 IT",
-    "ModulePrefix":  "WEB"
+{
+  "ModuleName": "PSHTMLwebframework",
+  "ModuleVersion": "0.0.17",
+  "ModuleDescription": "PSHTML website framework",
+  "ModuleAuthor": "Martin Walther",
+  "ModuleCompany": "Martin Walther Foto & IT",
+  "ModulePrefix": "WEB"
 }

@@ -2,6 +2,7 @@
 
 Version | Description | Date | Author
 -|-|-|-
+V0.0.17 | Change meta from local to online | 2020-02-02 | Martin Walther
 V0.0.16 | Add switch for ContainerStyle | 2020-01-19 | Martin Walther
 V0.0.15 | Add Brand to navbar | 2020-01-15 | Martin Walther
 V0.0.14 | Change the HTML Layout to semantic elements | 2020-01-12 | Martin Walther

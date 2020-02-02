@@ -9,7 +9,7 @@ span -id "footer" -class "text-center" -Content {
     " | Based on $($PSHTMLlink) | "
 
     span -class "badge badge-primary" -Content {
-        "v0.0.16"
+        "v0.0.17"
     }
 
 }
