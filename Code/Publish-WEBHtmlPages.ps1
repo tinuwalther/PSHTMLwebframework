@@ -1,4 +1,3 @@
-
 function Publish-WEBHtmlPages{
 
     <#
@@ -41,10 +40,17 @@ function Publish-WEBHtmlPages{
     try{
 
         Write-Host "[BUILD] [START] Launching Build Process" -ForegroundColor Green	
-
         $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
-            powershell.exe -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
+            if($PSVersionTable.PSVersion.Major -lt 6){
+                . (Join-Path -Path $psHome -ChildPath 'powershell.exe') -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
+            }else{
+                if($IsWindows){
+                    . (Join-Path -Path $psHome -ChildPath 'pwsh.exe') -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
+                }else{
+                    . (Join-Path -Path $psHome -ChildPath 'pwsh') -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
+                }
+            }    
         }
 
         Get-ChildItem -Path $HTMLRoot -Filter '*.html'

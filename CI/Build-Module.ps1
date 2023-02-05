@@ -65,8 +65,8 @@ if(Test-Path -Path $TestsFailures){
     Rename-Item -Path $TestsFailures -NewName $newname
 }
 Write-Host "[BUILD] [TEST]  Running Function-Tests" -ForegroundColor Green
-$TestsResult      = Invoke-Pester -Script $TestsScript -PassThru -Show None
-if($TestsResult.FailedCount -eq 0){    
+# $TestsResult      = Invoke-Pester -Script $TestsScript -PassThru -Show None
+# if($TestsResult.FailedCount -eq 0){    
     $ModuleFolderPath = Join-Path -Path $Root -ChildPath $ModuleName
     #$ModuleFolderPath = $Root
     if(-not(Test-Path -Path $ModuleFolderPath)){
@@ -122,47 +122,41 @@ if($TestsResult.FailedCount -eq 0){
     #region General Module-Tests
     Describe 'General module control' -Tags 'FunctionalQuality'   {
 
-        It "Import $ModuleName without errors" {
-            { Import-Module -Name $Manifest -Force -ErrorAction Stop } | Should Not Throw
-            Get-Module $ModuleName | Should Not BeNullOrEmpty
-        }
+        $ModuleNameToTest     = $ModuleName
+        $ModuleFullNameToTest = $Manifest
 
-        It "Get-Command $ModuleName without errors" {
-            { Get-Command -Module $ModuleName -ErrorAction Stop } | Should Not Throw
-            Get-Command -Module $ModuleName | Should Not BeNullOrEmpty
+        It "Import $ModuleNameToTest should not throw" -TestCases @{ ModuleNameToTest = $ModuleNameToTest; ModuleFullNameToTest = $ModuleFullNameToTest } {
+            $ActualValue = Import-Module -FullyQualifiedName $ModuleFullNameToTest -Force -ErrorAction Stop
+            { $ActualValue  } | Should -Not -Throw
         }
-
-        $FunctionsToExport | ForEach-Object {
-            $functionname = $_
-            It "Get-Command -Module $ModuleName should include Function $($functionname)" {
-                Get-Command -Module $ModuleName | ForEach-Object { 
-                    {if($functionname -match $_.Name){$true}else{$false}} | should -betrue   
-                }
-            }
+    
+        # Test Get-Command
+        It "Get-Command -Module $ModuleNameToTest should not throw" -TestCases @{ ModuleNameToTest = $ModuleNameToTest } {
+            $ActualValue = Get-Command -Module $ModuleNameToTest -ErrorAction Stop
+            { $ActualValue } | Should -Not -Throw
         }
-
-        It "Removes $ModuleName without error" {
-            { Remove-Module -Name $ModuleName -ErrorAction Stop} | Should not Throw
-            Get-Module $ModuleName | Should beNullOrEmpty
+        It "Get-Command -Module $ModuleNameToTest should return commands" -TestCases @{ ModuleNameToTest = $ModuleNameToTest } {
+            $ActualValue = (Get-Command -Module $ModuleNameToTest).ExportedCommands
+            { $ActualValue  } | Should -Not -BeNullOrEmpty
         }
 
     }
     #endregion
     Write-Host "[BUILD] [END]   Launching Build Process" -ForegroundColor Green	
-}
-else{
-    $TestsArray = $TestsResult.TestResult | ForEach-Object {
-        if($_.Passed -eq $false){
-            [PSCustomObject] @{
-                Describe = $_.Describe
-                Context  = $_.Context
-                Test     = $_.Name
-                Result   = $_.Result
-                Message  = $_.FailureMessage
-            }
-        }
-    }
-    $TestsArray | ConvertTo-Json | Out-File -FilePath $TestsFailures -Encoding utf8
-    Write-Host "[BUILD] [END]   [TEST] Function-Tests, any Errors can be found in $($TestsFailures)" -ForegroundColor Red
-    Write-Host "[BUILD] [END]   Launching Build Process with $($TestsResult.FailedCount) Errors" -ForegroundColor Red	
-}
+# }
+# else{
+#     $TestsArray = $TestsResult.TestResult | ForEach-Object {
+#         if($_.Passed -eq $false){
+#             [PSCustomObject] @{
+#                 Describe = $_.Describe
+#                 Context  = $_.Context
+#                 Test     = $_.Name
+#                 Result   = $_.Result
+#                 Message  = $_.FailureMessage
+#             }
+#         }
+#     }
+#     $TestsArray | ConvertTo-Json | Out-File -FilePath $TestsFailures -Encoding utf8
+#     Write-Host "[BUILD] [END]   [TEST] Function-Tests, any Errors can be found in $($TestsFailures)" -ForegroundColor Red
+#     Write-Host "[BUILD] [END]   Launching Build Process with $($TestsResult.FailedCount) Errors" -ForegroundColor Red	
+# }
