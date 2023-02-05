@@ -1,0 +1,74 @@
+/*
+ * PSHTML webframework
+ * Override by Martin Walther
+ */
+body { 
+  background: #034f84 !important;
+}
+
+header {
+  background: #033b63;
+  padding: 20;
+  color: white;
+  font-size: medium;
+  display: block;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+footer {
+  background: #033b63;
+  padding: 30;
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: "QuickSand", sans-serif;
+}
+
+h1 {
+  font-family: "QuickSand", sans-serif;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-family: "QuickSand", sans-serif;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-family: "QuickSand", sans-serif;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+img {
+    max-width:100% ;
+    margin: 10;
+}
+
+table {
+  font-family: "QuickSand", sans-serif;
+}
+
+pre {
+  width: 100%;
+  padding: 10;
+  margin: 5;
+  overflow: auto;
+  overflow-y: hidden;
+
+  display: block;
+  unicode-bidi: embed;
+  font-family: monospace;
+
+  line-height: 30px;
+  background: rgb(228, 228, 228);
+}
+pre code {
+  padding: 10px;
+  color: #333;
+}
