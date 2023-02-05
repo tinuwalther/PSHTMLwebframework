@@ -11,16 +11,25 @@
     link -rel 'icon' -href 'https://avatars1.githubusercontent.com/u/56639134?s=400&u=9c1a1dc1a8d8718534bf7d455042c7382cc419a0&v=4' -type 'image/x-icon'
     
     # Define the stylesheets
-    Link -href "Style/style.css" -rel stylesheet
-    #To use it from local: Link -href "Assets/BootStrap/bootstrap.min.css" -rel stylesheet
-    link -href "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" -rel stylesheet -Attributes @{"integrity"="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"; "crossorigin"="anonymous"}
-    link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel stylesheet
+    Link -href "assets/style/style.css" -rel stylesheet
+    #To use it from local: Link -href "assets/BootStrap/bootstrap.min.css" -rel stylesheet
+    Link -href "assets/BootStrap/bootstrap.min.css" -rel stylesheet
+    Link -href "assets/style/fonts.css" -rel stylesheet
+    #To use it from online:
+    #link -href "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" -rel stylesheet -Attributes @{"integrity"="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"; "crossorigin"="anonymous"}
+    #link -href "https://fonts.googleapis.com/css?family=Quicksand&display=swap" -rel stylesheet
 
     # Define the scripts
-    #To use it from local: Script -src "Assets/Jquery/jquery.min.js"
-    Script -src "https://code.jquery.com/jquery-3.4.1.min.js"-Attributes @{"integrity"="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="; "crossorigin"="anonymous"}
+    #To use it from local: Script -src "assets/Jquery/jquery.min.js"
+    Script -src "assets/Jquery/jquery.min.js"
+    #To use it from online:
+    #Script -src "https://code.jquery.com/jquery-3.4.1.min.js" -Attributes @{"integrity"="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="; "crossorigin"="anonymous"}
 
-    #Script -src "Assets/BootStrap/bootstrap.min.js"
-    Script -src "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" -Attributes @{"integrity"="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"; "crossorigin"="anonymous"}
-    Script -src "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" -Attributes @{"integrity"="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"; "crossorigin"="anonymous"}
+    #To use it from local: Script -src "assets/BootStrap/bootstrap.min.js"
+    Script -src "assets/BootStrap/bootstrap.min.js"
+    #To use it from online:
+    #Script -src "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" -Attributes @{"integrity"="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"; "crossorigin"="anonymous"}
+    Script -src "assets/Popper/popper.min.js"
+    #To use it from online:
+    #Script -src "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" -Attributes @{"integrity"="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"; "crossorigin"="anonymous"}
 
