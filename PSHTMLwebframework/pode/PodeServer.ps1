@@ -86,6 +86,10 @@ function Set-PodeRoutes {
         Write-PodeViewResponse -Path 'about.html'
     }
 
+    Add-PodeRoute -Method Get -Path '/test' -ScriptBlock {
+        Write-PodeViewResponse -Path 'test.html'
+    }
+
     Write-Verbose $('[', (Get-Date -f 'yyyy-MM-dd HH:mm:ss.fff'), ']', '[ End     ]', "$($MyInvocation.MyCommand.Name)" -Join ' ')
 
 }
