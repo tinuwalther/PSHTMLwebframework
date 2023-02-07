@@ -1,3 +1,3 @@
 span -content {
-    "I ♥ PS C:\ > PSHTML Webframework - Build simple Websites with PowerShell"
+    "I $([char]9829) PS C:\ > PSHTML & Pode Webframework - Build simple Websites with PowerShell"
 }

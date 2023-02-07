@@ -29,7 +29,7 @@
     Script -src "assets/BootStrap/bootstrap.min.js"
     #To use it from online:
     #Script -src "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" -Attributes @{"integrity"="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"; "crossorigin"="anonymous"}
-    Script -src "assets/Popper/popper.min.js"
+    Script -src "assets/popper/popper.min.js"
     #To use it from online:
     #Script -src "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" -Attributes @{"integrity"="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"; "crossorigin"="anonymous"}
 

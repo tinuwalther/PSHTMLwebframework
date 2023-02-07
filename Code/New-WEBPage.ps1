@@ -44,7 +44,7 @@ function New-WEBPage{
             $Menue = @"
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "$($_).html" -content {
+    a -class "nav-link" -href "/$($_)" -content {
         "$($Label)"
     }
 

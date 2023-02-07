@@ -2,16 +2,16 @@
 # <!-- HomePage -->
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "index.html" -content {
+    a -class "nav-link" -href "/" -content {
         "Home"
     }
 
 }
 
-# <!-- NewPages -->
+# <!-- NewPages # Must be defined also in the PodeServer.ps1 -->
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "blog.html" -content {
+    a -class "nav-link" -href "/blog" -content {
         "Blog"
     }
 
@@ -19,7 +19,7 @@ li -class "nav-item" -content {
 
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "about.html" -content {
+    a -class "nav-link" -href "/about" -content {
         "About"
     }
 

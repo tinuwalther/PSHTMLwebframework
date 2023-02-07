@@ -1,5 +1,5 @@
 <#
-    Generated at 02/05/2023 17:21:23 by Martin Walther
+    Generated at 02/07/2023 16:52:40 by Martin Walther
 #>
 #region namespace PSHTMLwebframework
 
@@ -48,7 +48,7 @@ function New-WEBPage{
             $Menue = @"
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "$($_).html" -content {
+    a -class "nav-link" -href "/$($_)" -content {
         "$($Label)"
     }
 
@@ -133,7 +133,6 @@ function Publish-WEBHtmlPages{
         Write-Host "[BUILD] [START] Launching Build Process" -ForegroundColor Green	
         $PSScripts = (Get-ChildItem -Path $PSBinPath -Filter '*.html.ps1') 
         $PSScripts | ForEach-Object {
-            #powershell.exe -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
             if($PSVersionTable.PSVersion.Major -lt 6){
                 . (Join-Path -Path $psHome -ChildPath 'powershell.exe') -File $($_.FullName) -WebsiteTitle $WebsiteTitle -ContainerStyle $ContainerStyle
             }else{

@@ -156,4 +156,8 @@ $HTML = html {
 }
 
 # <!-- Do not change this code -->
-$HTML | out-File -Filepath ..\$($page).html -Encoding utf8
+$Current      = (Split-Path -Path $MyInvocation.MyCommand.Path)
+$Root         = ((Get-Item $Current).Parent).FullName
+$HTMLRoot     = Join-Path -Path $Root -ChildPath "pode"
+$HTMLBlogPath = Join-Path -Path $HTMLRoot -ChildPath "views"
+$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "$($page).html") -Encoding utf8
