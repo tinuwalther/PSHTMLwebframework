@@ -69,25 +69,51 @@ function Set-HostEntry{
 
 function Set-PodeRoutes {
     [CmdletBinding()]
-    param()
+    param(
+        [Parameter(Mandatory=$false)]
+        [Switch]$index,
+        
+        [Parameter(Mandatory=$false)]
+        [Switch]$blog,
+        
+        [Parameter(Mandatory=$false)]
+        [Switch]$about,
+        
+        [Parameter(Mandatory=$false)]
+        [Switch]$test
+        
+    )
 
     Write-Verbose $('[', (Get-Date -f 'yyyy-MM-dd HH:mm:ss.fff'), ']', '[ Begin   ]', "$($MyInvocation.MyCommand.Name)" -Join ' ')
 
     # Must be defined also in the navbar.ps1
-    Add-PodeRoute -Method Get -Path '/' -ScriptBlock {
-        Write-PodeViewResponse -Path 'index.html'
+    if($index){
+        Add-PodeRoute -Method Get -Path '/' -Authentication 'Login' -ScriptBlock {
+            $WebEvent.Session.Data.Views++
+            Write-PodeViewResponse -Path 'index.pode' -Data @{
+                Username = $WebEvent.Auth.User.Name;
+                Views = $WebEvent.Session.Data.Views;
+            } #for PowerShell Code inside the page
+            #Write-PodeViewResponse -Path 'index.html'
+        }
     }
 
-    Add-PodeRoute -Method Get -Path '/blog' -ScriptBlock {
-        Write-PodeViewResponse -Path 'blog.html'
+    if($blog){
+        Add-PodeRoute -Method Get -Path '/blog' -Authentication 'Login' -ScriptBlock {
+            Write-PodeViewResponse -Path 'blog.html'
+        }    
     }
 
-    Add-PodeRoute -Method Get -Path '/about' -ScriptBlock {
-        Write-PodeViewResponse -Path 'about.html'
+    if($about){
+        Add-PodeRoute -Method Get -Path '/about' -Authentication 'Login' -ScriptBlock {
+            Write-PodeViewResponse -Path 'about.html'
+        }    
     }
 
-    Add-PodeRoute -Method Get -Path '/test' -ScriptBlock {
-        Write-PodeViewResponse -Path 'test.html'
+    if($test){
+        Add-PodeRoute -Method Get -Path '/test' -Authentication 'Login' -ScriptBlock {
+            Write-PodeViewResponse -Path 'test.html'
+        }    
     }
 
     Write-Verbose $('[', (Get-Date -f 'yyyy-MM-dd HH:mm:ss.fff'), ']', '[ End     ]', "$($MyInvocation.MyCommand.Name)" -Join ' ')
@@ -115,14 +141,60 @@ if($PSVersionTable.PSVersion.Major -lt 6){
 if($CurrentOS -eq [OSType]::Windows){
     if(Test-IsElevated -OS $CurrentOS) {
         $null = Set-HostEntry -Name 'pspode' -Elevated
-        Start-PodeServer -ScriptBlock {
+        Start-PodeServer -Threads 2 -ScriptBlock {
             Write-Host "Running on Windows with elevated Privileges since $(Get-Date)" -ForegroundColor Red
             Write-Host "Press Ctrl. + C to terminate the Pode server" -ForegroundColor Yellow
 
             Add-PodeEndpoint -Address * -Port 5989 -Protocol Http -Hostname 'pspode'
-            New-PodeLoggingMethod -File -Name 'requests' -MaxDays 4 | Enable-PodeRequestLogging
+            #New-PodeLoggingMethod -File -Name 'requests' -MaxDays 4 | Enable-PodeRequestLogging
+            New-PodeLoggingMethod -Terminal | Enable-PodeErrorLogging
 
-            Set-PodeRoutes
+            # set the view engine
+            Set-PodeViewEngine -Type Pode
+
+            # setup session details
+            Enable-PodeSessionMiddleware -Duration 120 -Extend
+
+            # setup form authentication
+            New-PodeAuthScheme -Form | Add-PodeAuth -Name 'Login' -FailureUrl '/login' -SuccessUrl '/' -ScriptBlock {
+                param($username, $password)
+
+                # here you'd check a real user storage, this is just for example
+                if ($username -eq 'mwalther' -and $password -eq 'strong') {
+                    return @{
+                        User = @{
+                            ID ='M0R7Y302'
+                            Name = 'Tinu'
+                            Type = 'Human'
+                        }
+                    }
+                }
+
+                # aww geez! no user was found
+                return @{ Message = 'Invalid details supplied' }
+            }
+
+            # the "GET /" endpoint for the homepage
+            Set-PodeRoutes -index -blog -about -test
+    
+            # Add-PodeRoute -Method Get -Path '/' -Authentication 'Login' -ScriptBlock {
+            #     $WebEvent.Session.Data.Views++
+
+            #     Write-PodeViewResponse -Path 'auth-home' -Data @{
+            #         Username = $WebEvent.Auth.User.Name;
+            #         Views = $WebEvent.Session.Data.Views;
+            #     }
+            # }
+
+            # the "GET /login" endpoint for the login page
+            Add-PodeRoute -Method Get -Path '/login' -Authentication 'Login' -Login -ScriptBlock {
+                Write-PodeViewResponse -Path 'login.html' -FlashMessages
+            }
+
+            # the "POST /login" endpoint for user authentication
+            Add-PodeRoute -Method Post -Path '/login' -Authentication 'Login' -Login
+
+            #Set-PodeRoutes -index -blog -about -test
             
         } -RootPath $($PSScriptRoot).Replace('bin','pode')
     }else{

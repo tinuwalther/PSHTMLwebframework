@@ -9,7 +9,7 @@ param(
 )
 
 # <!-- Do not change this code -->
-$page  = "home"
+$page  = ($MyInvocation.MyCommand.Name -replace '.ps1') -replace '.html'
 $Label = (Get-Culture).TextInfo.ToTitleCase($page.ToLower())
 
 switch($ContainerStyle){
@@ -25,12 +25,14 @@ $HTML = html {
     head {
                 
         Include meta
-        
+
+        meta -name "keywords" -content_tag "$($MetaKeywords)"
+
         Title "$($page.ToUpper()) | $($WebsiteTitle)"
     }
 
     body {
-        
+
         # <!-- Do not change the header -->
         header {
 
@@ -47,7 +49,7 @@ $HTML = html {
                 img -src "Assets/IMG/pshtml.png" -alt "Logo" -style "width:60px"
             
             }
-            
+
             # <!-- Toggler/collapsibe Button -->
             button -class "navbar-toggler" -Attributes @{
                 "type"="button"
@@ -108,42 +110,26 @@ $HTML = html {
 
                 }
 
-                article -id "SiteOverview" -Content {
+                article -id "Login" -Content {
 
                     div -id "1" -class "$ContainerStyleIn" -Content {
 
-                        h1 "$($Label) PSHTML Webframework"
+                        h1 "$($Label) PSHTML Webframework Login"
 
                         p {
                             "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts."
                         }
 
-                    }
+                        #Form [-action] <String> [-method] <String> [-target] <String> [[-Class] <String>] [[-Id] <String>] 
+                        #     [[-Style] <String>] [[-Attributes] <Hashtable>] [[-Content] <ScriptBlock>] [<CommonParameters>]
+                        #     application/x-www-form-urlencoded, multipart/form-data, text/plain
 
-                }
-
-                article -id "SiteContent1" -Content {
-
-                    div -id "2" -class "$ContainerStyleIn text-center" -Content {
-
-                        div -id "2.1" -class "picture" -Content {
-
-                            #img -src "Assets/IMG/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px"
-                            p { 'Hello, $($data.Username)! You have view this page $($data.Views) times!' }
-                        }
-
-                    }
-
-                }
-
-                article -id "SiteContent2" -Content {
-
-                    div -id "2" -class "$ContainerStyleIn" -Content {
-
-                        h2 "Lorem ipsum dolor sit amet"
-
-                        p {
-                            "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                        Form -action '/login' -method post -enctype 'application/x-www-form-urlencoded' -Content {
+                            label -Content { 'Username' }; br
+                            input -type text -name username -value 'mwalther' -required; br
+                            label -Content { 'Password' }; br
+                            input -type password -name password -value 'strong' -required; br
+                            input -type submit -name submit
                         }
 
                     }
@@ -151,8 +137,8 @@ $HTML = html {
                 }
             
                 br
-                
-            }
+                    
+            } 
 
         }
 
@@ -162,13 +148,13 @@ $HTML = html {
             Include -Name footer
             
         }
-    
+
     }
-        
+
 }
 
 # <!-- Do not change this code -->
 $Root         = ((Get-Item $PSScriptRoot).Parent).FullName
 $HTMLRoot     = Join-Path -Path $Root -ChildPath "pode"
 $HTMLBlogPath = Join-Path -Path $HTMLRoot -ChildPath "views"
-$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "index.html") -Encoding utf8
+$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "$($page).html") -Encoding utf8
