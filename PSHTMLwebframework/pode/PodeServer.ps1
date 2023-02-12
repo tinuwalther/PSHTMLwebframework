@@ -86,15 +86,24 @@ function Set-PodeRoutes {
 
     Write-Verbose $('[', (Get-Date -f 'yyyy-MM-dd HH:mm:ss.fff'), ']', '[ Begin   ]', "$($MyInvocation.MyCommand.Name)" -Join ' ')
 
+    # the "GET /login" endpoint for the login page
+    Add-PodeRoute -Method Get -Path '/login' -Authentication 'Login' -Login -ScriptBlock {
+        Write-PodeViewResponse -Path 'login.html' -FlashMessages
+    }
+
+    # the "POST /login" endpoint for user authentication
+    Add-PodeRoute -Method Post -Path '/login' -Authentication 'Login' -Login
+    
     # Must be defined also in the navbar.ps1
     if($index){
         Add-PodeRoute -Method Get -Path '/' -Authentication 'Login' -ScriptBlock {
+            # increase the session view
             $WebEvent.Session.Data.Views++
+
             Write-PodeViewResponse -Path 'index.pode' -Data @{
                 Username = $WebEvent.Auth.User.Name;
-                Views = $WebEvent.Session.Data.Views;
-            } #for PowerShell Code inside the page
-            #Write-PodeViewResponse -Path 'index.html'
+                Views    = $WebEvent.Session.Data.Views;
+            } # for PowerShell Code inside the page, the extension must be .pode
         }
     }
 
@@ -146,6 +155,7 @@ if($CurrentOS -eq [OSType]::Windows){
             Write-Host "Press Ctrl. + C to terminate the Pode server" -ForegroundColor Yellow
 
             Add-PodeEndpoint -Address * -Port 5989 -Protocol Http -Hostname 'pspode'
+
             #New-PodeLoggingMethod -File -Name 'requests' -MaxDays 4 | Enable-PodeRequestLogging
             New-PodeLoggingMethod -Terminal | Enable-PodeErrorLogging
 
@@ -176,26 +186,7 @@ if($CurrentOS -eq [OSType]::Windows){
 
             # the "GET /" endpoint for the homepage
             Set-PodeRoutes -index -blog -about -test
-    
-            # Add-PodeRoute -Method Get -Path '/' -Authentication 'Login' -ScriptBlock {
-            #     $WebEvent.Session.Data.Views++
-
-            #     Write-PodeViewResponse -Path 'auth-home' -Data @{
-            #         Username = $WebEvent.Auth.User.Name;
-            #         Views = $WebEvent.Session.Data.Views;
-            #     }
-            # }
-
-            # the "GET /login" endpoint for the login page
-            Add-PodeRoute -Method Get -Path '/login' -Authentication 'Login' -Login -ScriptBlock {
-                Write-PodeViewResponse -Path 'login.html' -FlashMessages
-            }
-
-            # the "POST /login" endpoint for user authentication
-            Add-PodeRoute -Method Post -Path '/login' -Authentication 'Login' -Login
-
-            #Set-PodeRoutes -index -blog -about -test
-            
+                
         } -RootPath $($PSScriptRoot).Replace('bin','pode')
     }else{
         Write-Host "Running on Windows and start new session with elevated Privileges" -ForegroundColor Green

@@ -110,7 +110,7 @@ $HTML = html {
 
                 article -id "SiteOverview" -Content {
 
-                    div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "1" -class "$ContainerStyleIn text-center" -Content {
 
                         h1 "$($Label) PSHTML Webframework"
 
@@ -128,22 +128,8 @@ $HTML = html {
 
                         div -id "2.1" -class "picture" -Content {
 
-                            #img -src "Assets/IMG/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px"
-                            p { 'Hello, $($data.Username)! You have view this page $($data.Views) times!' }
-                        }
-
-                    }
-
-                }
-
-                article -id "SiteContent2" -Content {
-
-                    div -id "2" -class "$ContainerStyleIn" -Content {
-
-                        h2 "Lorem ipsum dolor sit amet"
-
-                        p {
-                            "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+                            p { 'Hello, $($data.Username)! You have view this page $($data.Views) times from Computer $($env:COMPUTERNAME)!' }
+                            img -src "assets/img/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px" -width "800"
                         }
 
                     }
