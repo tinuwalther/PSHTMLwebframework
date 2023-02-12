@@ -53,7 +53,8 @@ function Publish-WEBHtmlPages{
             }    
         }
 
-        Get-ChildItem -Path $HTMLRoot -Filter '*.html'
+        Get-ChildItem -Path $HTMLBlogPath -Filter '*.pode'
+        Get-ChildItem -Path $HTMLBlogPath -Filter '*.html'
 
         Write-Host "`n[BUILD] [END ] Build Process" -ForegroundColor Green	
 

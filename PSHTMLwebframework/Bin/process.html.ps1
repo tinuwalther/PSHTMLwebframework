@@ -113,13 +113,13 @@ $HTML = html {
 
                 article -id "SiteOverview" -Content {
 
-                    div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "1" -class "$ContainerStyleIn text-center" -Content {
 
                         h1 "$($Label) PSHTML Webframework"
 
                         p {
                             "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts."
-                        } -Class 'text-left'
+                        }
 
                     }
 
@@ -127,11 +127,10 @@ $HTML = html {
 
                 article -id "Process" -Content {
 
-                    div -id "2" -class "$ContainerStyleIn" -Content {
-
-                        h2 "Get the first 9 process"
+                    div -id "2" -class "$ContainerStyleIn text-center" -Content {
                     
-                        Get-Process | Select-Object -First 9 Id, Name, VM, WS, PM, NPM | ConvertTo-PSHTMLTable
+                        $TableClasses = "table table-responsive table-light table-hover"
+                        Get-Process | Select-Object -First 9 Id, Name, VM, WS, PM, NPM | ConvertTo-PSHTMLTable -TableClass $TableClasses
 
                     }
                 }

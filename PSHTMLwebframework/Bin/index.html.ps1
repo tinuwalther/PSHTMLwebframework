@@ -128,8 +128,10 @@ $HTML = html {
 
                         div -id "2.1" -class "picture" -Content {
 
-                            p { 'Hello, $($data.Username)! You have view this page $($data.Views) times from Computer $($env:COMPUTERNAME)!' }
-                            img -src "assets/img/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px" -width "800"
+                            p { 
+                                'Hey, $($data.Username)! You have view this page $($data.Views) times!' 
+                            }
+                            img -src "assets/img/words.png" -class "img-rounded mx-auto d-block" -alt "PowerShell Words" -Style "padding:40px" -width "700"
                         }
 
                     }
@@ -157,4 +159,4 @@ $HTML = html {
 $Root         = ((Get-Item $PSScriptRoot).Parent).FullName
 $HTMLRoot     = Join-Path -Path $Root -ChildPath "pode"
 $HTMLBlogPath = Join-Path -Path $HTMLRoot -ChildPath "views"
-$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "index.html") -Encoding utf8
+$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "index.pode") -Encoding utf8

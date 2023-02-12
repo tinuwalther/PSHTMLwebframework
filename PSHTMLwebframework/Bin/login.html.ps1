@@ -112,7 +112,7 @@ $HTML = html {
 
                 article -id "Login" -Content {
 
-                    div -id "1" -class "$ContainerStyleIn" -Content {
+                    div -id "1" -class "$ContainerStyleIn text-center" -Content {
 
                         h1 "$($Label) PSHTML Webframework Login"
 
@@ -120,15 +120,15 @@ $HTML = html {
                             "The PSHTMLwebframework builds HTML-Files with PSHTML from native PowerShell-Scripts."
                         }
 
-                        #Form [-action] <String> [-method] <String> [-target] <String> [[-Class] <String>] [[-Id] <String>] 
-                        #     [[-Style] <String>] [[-Attributes] <Hashtable>] [[-Content] <ScriptBlock>] [<CommonParameters>]
-                        #     application/x-www-form-urlencoded, multipart/form-data, text/plain
+                        p { 
+                            'Hello $(($env:USERNAME).ToUpper()), please login to the website!' 
+                        }
 
                         Form -action '/login' -method post -enctype 'application/x-www-form-urlencoded' -Content {
                             label -Content { 'Username' }; br
-                            input -type text -name username -value 'mwalther' -required; br
+                            input -type text -name username -value 'mwalther' -required; br; br
                             label -Content { 'Password' }; br
-                            input -type password -name password -value 'strong' -required; br
+                            input -type password -name password -value 'strong' -required; br; br
                             input -type submit -name submit
                         }
 
@@ -157,4 +157,4 @@ $HTML = html {
 $Root         = ((Get-Item $PSScriptRoot).Parent).FullName
 $HTMLRoot     = Join-Path -Path $Root -ChildPath "pode"
 $HTMLBlogPath = Join-Path -Path $HTMLRoot -ChildPath "views"
-$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "$($page).html") -Encoding utf8
+$HTML | out-File -Filepath (Join-Path -Path $($HTMLBlogPath) -ChildPath "$($page).pode") -Encoding utf8

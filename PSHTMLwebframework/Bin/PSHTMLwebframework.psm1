@@ -1,5 +1,5 @@
 <#
-    Generated at 02/07/2023 20:03:11 by Martin Walther
+    Generated at 02/12/2023 16:43:09 by Martin Walther
 #>
 #region namespace PSHTMLwebframework
 
@@ -144,7 +144,8 @@ function Publish-WEBHtmlPages{
             }    
         }
 
-        Get-ChildItem -Path $HTMLRoot -Filter '*.html'
+        Get-ChildItem -Path $HTMLBlogPath -Filter '*.pode'
+        Get-ChildItem -Path $HTMLBlogPath -Filter '*.html'
 
         Write-Host "`n[BUILD] [END ] Build Process" -ForegroundColor Green	
 

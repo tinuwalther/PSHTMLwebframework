@@ -27,9 +27,8 @@ li -class "nav-item" -content {
 
 li -class "nav-item" -content {
 
-    a -class "nav-link" -href "/test" -content {
-        "Test"
+    a -class "nav-link" -href "/process" -content {
+        "Process"
     }
 
 }
-

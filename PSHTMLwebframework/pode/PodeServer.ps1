@@ -88,7 +88,7 @@ function Set-PodeRoutes {
 
     # the "GET /login" endpoint for the login page
     Add-PodeRoute -Method Get -Path '/login' -Authentication 'Login' -Login -ScriptBlock {
-        Write-PodeViewResponse -Path 'login.html' -FlashMessages
+        Write-PodeViewResponse -Path 'login.pode' -FlashMessages
     }
 
     # the "POST /login" endpoint for user authentication
@@ -120,8 +120,8 @@ function Set-PodeRoutes {
     }
 
     if($test){
-        Add-PodeRoute -Method Get -Path '/test' -Authentication 'Login' -ScriptBlock {
-            Write-PodeViewResponse -Path 'test.html'
+        Add-PodeRoute -Method Get -Path '/process' -Authentication 'Login' -ScriptBlock {
+            Write-PodeViewResponse -Path 'process.html'
         }    
     }
 
