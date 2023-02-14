@@ -80,7 +80,10 @@ function Set-PodeRoutes {
         [Switch]$about,
         
         [Parameter(Mandatory=$false)]
-        [Switch]$test
+        [Switch]$process,
+        
+        [Parameter(Mandatory=$false)]
+        [Switch]$service
         
     )
 
@@ -119,9 +122,15 @@ function Set-PodeRoutes {
         }    
     }
 
-    if($test){
+    if($process){
         Add-PodeRoute -Method Get -Path '/process' -Authentication 'Login' -ScriptBlock {
             Write-PodeViewResponse -Path 'process.html'
+        }    
+    }
+
+    if($service){
+        Add-PodeRoute -Method Get -Path '/service' -Authentication 'Login' -ScriptBlock {
+            Write-PodeViewResponse -Path 'service.html'
         }    
     }
 
@@ -185,7 +194,7 @@ if($CurrentOS -eq [OSType]::Windows){
             }
 
             # the "GET /" endpoint for the homepage
-            Set-PodeRoutes -index -blog -about -test
+            Set-PodeRoutes -index -blog -about -process -service
                 
         } -RootPath $($PSScriptRoot).Replace('bin','pode')
     }else{

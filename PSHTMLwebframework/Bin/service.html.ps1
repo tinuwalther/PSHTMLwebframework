@@ -109,7 +109,6 @@ $HTML = html {
                             $link = a {"PSHTMLwebframework"} -href "https://github.com/tinuwalther/PSHTMLwebframework/blob/develop/README.md" -Target _blank
                             " | Generated with $($link)"
                         }
-
                     } 
 
                 }
@@ -128,14 +127,33 @@ $HTML = html {
 
                 }
 
-                article -id "Process" -Content {
+                article -id "Service" -Content {
 
                     div -id "2" -class "$ContainerStyleIn text-center" -Content {
-                    
-                        $TableClasses = "table table-responsive table-light table-hover"
-                        Get-Process | Select-Object -First 9 Id, Name, VM, WS, PM, NPM | ConvertTo-PSHTMLTable -TableClass $TableClasses
+
+                        h2 "Services"
+
+                        $service = Get-Service | Select-Object -First 5
+                        foreach($item in $service){
+                            
+                            div -class "col" -Content {
+                                div -class "col-md-4" -Content {
+                                    div -class "card mb-4 shadow-sm" -Content {
+                                        div -class "card-body" -Content {
+                                            p -class "card-text" -Content {
+                                                "Name: $($item.Name), "
+                                                "Startup Type: $($item.StartType), "
+                                                "Status: $($item.Status)"
+                                            }    
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
 
                     }
+
                 }
             
                 br

@@ -77,6 +77,9 @@ $HTML = html {
                         a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
                     }
             
+                    li -class "nav-item" -content {
+                        a -class "nav-link" -href "https://pode.readthedocs.io/en/latest/" -Target _blank -content { "Pode" }
+                    }
                 }
     
             }
