@@ -41,48 +41,52 @@ $HTML = html {
         # <!-- Do not change the nav -->
         nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
 
-            # <!-- Brand -->
-            a -class "navbar-brand" -href "#" -content {
-    
-                img -src "Assets/IMG/pshtml.png" -alt "Logo" -style "width:60px"
-            
-            }
+            div -class "container-fluid" {
 
-            # <!-- Toggler/collapsibe Button -->
-            button -class "navbar-toggler" -Attributes @{
-                "type"="button"
-                "data-toggle"="collapse"
-                "data-target"="#collapsibleNavbar"
-            } -content {
-                span -class "navbar-toggler-icon"
-            }
-
-            # <!-- Navbar links -->
-
-            div -class "collapse navbar-collapse" -id "collapsibleNavbar" -Content {
-
-                ul -class "navbar-nav" -content {
-
-                    Include navbar
-    
-                    #FixedLinks
-                    li -class "nav-item" -content {
-                        a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
-                    }
-            
-                    li -class "nav-item" -content {
-                        a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
-                    }
-            
-                    li -class "nav-item" -content {
-                        a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
-                    }
-            
-                    li -class "nav-item" -content {
-                        a -class "nav-link" -href "https://pode.readthedocs.io/en/latest/" -Target _blank -content { "Pode" }
-                    }
+                # <!-- Brand -->
+                a -class "navbar-brand" -href "#" -content {
+        
+                    img -src "Assets/IMG/pshtml.png" -alt "Logo" -style "width:60px"
+                
                 }
-    
+
+                # <!-- Toggler/collapsibe Button -->
+                button -class "navbar-toggler" -Attributes @{
+                    "type"="button"
+                    "data-bs-toggle"="collapse"
+                    "data-bs-target"="#collapsibleNavbar"
+                } -content {
+                    span -class "navbar-toggler-icon"
+                }
+
+                # <!-- Navbar links -->
+
+                div -class "collapse navbar-collapse" -id "collapsibleNavbar" -Content {
+
+                    ul -class "navbar-nav" -content {
+
+                        Include navbar
+        
+                        #FixedLinks
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
+                        }
+                
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://getbootstrap.com/" -Target _blank -content { "Bootstrap" }
+                        }
+                
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://www.w3schools.com/" -Target _blank -content { "w3schools" }
+                        }
+                
+                        li -class "nav-item" -content {
+                            a -class "nav-link" -href "https://pode.readthedocs.io/en/latest/" -Target _blank -content { "Pode" }
+                        }
+                    }
+        
+                }
+
             }
 
         }
