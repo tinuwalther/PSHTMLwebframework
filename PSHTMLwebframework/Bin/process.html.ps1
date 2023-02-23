@@ -41,7 +41,9 @@ $HTML = html {
         }
 
         # <!-- Do not change the nav -->
-        nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -content {
+        nav -class "navbar navbar-expand-sm bg-dark navbar-dark sticky-top" -Attributes @{
+            "data-bs-theme"="dark"
+        } -content {
 
             div -class "container-fluid" {
 
@@ -67,7 +69,32 @@ $HTML = html {
                     ul -class "navbar-nav" -content {
 
                         Include navbar
-        
+
+                        # <!-- Navbar Dropdown -->
+                        li -class "nav-item dropdown" -Content {
+                            button -class "nav-link dropdown-toggle btn btn-sm-outline" -Attributes @{
+                                "type"="button"
+                                "data-bs-toggle"="dropdown"
+                            } -Content {
+                                "Dropdown"
+                            }
+                            ul -class "dropdown-menu" {
+                                li -class "dropdown-item" -Content {
+                                    a -class "nav-link" -href "#" -content { "HOME" }
+                                }
+                                li -class "dropdown-item" -Content {
+                                    a -class "nav-link" -href "https://sbb.ch" -Target _blank -content { "SBB" }
+                                }
+                                li -class "dropdown-item" -Content {
+                                    a -class "nav-link" -href "https://gmx.ch" -Target _blank -content { "GMX" }
+                                }
+                                i -class "dropdown-item" -Content {
+                                    a -class "nav-link" -href "https://gkb.ch" -Target _blank -content { "GKB" }
+                                }
+                            }
+                        }
+                        # <!-- Navbar Dropdown -->
+          
                         #FixedLinks
                         li -class "nav-item" -content {
                             a -class "nav-link" -href "https://pshtml.readthedocs.io/" -Target _blank -content { "PSHTML" }
